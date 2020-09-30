@@ -4,7 +4,7 @@ Microservizio per l'integrazione con i Social Network.
 ## Informazioni generali
 Sviluppato da me presso l'azienda I.T. Svil.
 
-### Social Network supportati:
+### Social Network supportati
 
 | Social Network | 
 | ---- | 
@@ -12,7 +12,7 @@ Sviluppato da me presso l'azienda I.T. Svil.
 | Twitter |
 | Telegram |
 
-### API utilizzate:
+### API utilizzate
 
 | Social Network | API |
 | ---- | ------- |
