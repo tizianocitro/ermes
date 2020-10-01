@@ -13,14 +13,17 @@ public interface TwitterService {
 	public String getAuthUrl(String key, String secret, String callbackUrl) throws TwitterException;
 	public boolean verifyConnection(String key, String secret);
 	public boolean isTokenExpired();
+	public boolean isTokenGiven(String token, String tokenSecret);
 	public boolean verifyApplicationInfo(String key, String secret);
 	public void configAccessToken(String verifier);
+	public void configAccessToken(String key, String secret, AccessToken accessToken);
+	public AccessToken buildAccessToken(String token, String tokenSecret, String userId);
 	public boolean verifyConnectionParameters(String token, String verifier);
 	public String getServiceName(StringBuffer path, String key);
-	public SocialResponse<TwitterAuthorizationResponse> authorization();
 	
 	//Interaction
 	public User getUser();
+	public SocialResponse<TwitterAuthorizationResponse> authorization();
 	public SocialResponse<PublishResponse> postTweet(String tweetText);
 	public SocialResponse<PublishResponse> postImage(String imageUrl, String tweetText);
 	public SocialResponse<PublishResponse> postVideo(String videoUrl, String tweetText);
@@ -32,13 +35,14 @@ public interface TwitterService {
 	public void setAccessToken(AccessToken accessToken);
 	
 	public static final String TWITTER_ID="twitter";
+	public static final String TWITTER_KEY="key";
+	public static final String TWITTER_SECRET="secret";
+	public static final String TWITTER_ACCESS_TOKEN="token";
+	public static final String TWITTER_ACCESS_TOKEN_SECRET="token_secret";
+	public static final String TWITTER_USER_ID="user_id";
 	public static final String TWITTER_TOKEN="oauth_token";
 	public static final String TWITTER_VERIFIER="oauth_verifier";
 	public static final String TWITTER_ERROR="error";
 	
-	//These parameters are needed in all the requests
-	public static final String TWITTER_KEY="key";
-	public static final String TWITTER_SECRET="secret";
-
 	public static final String TWITTER_DOMAIN="https://twitter.com/";
 }

@@ -73,6 +73,15 @@ public class TwitterConnector implements TwitterService {
 	}
 	
 	@Override
+	public boolean isTokenGiven(String token, String tokenSecret) {
+		//Check if the needed parameter to create the access token are not missing
+		if(!SocialUtil.checkString(token) || !SocialUtil.checkString(tokenSecret))
+			return false;
+		
+		return true;
+	}
+	
+	@Override
 	public boolean verifyApplicationInfo(String key, String secret) {
 		//Get the current configuration
 		Configuration configuration=twitter.getConfiguration();
@@ -95,6 +104,30 @@ public class TwitterConnector implements TwitterService {
 		catch(TwitterException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	@Override
+	public void configAccessToken(String key, String secret, AccessToken accessToken) {
+		//Build the connection
+		createConnection(key, secret);
+		
+		this.accessToken=accessToken;
+		twitter.setOAuthAccessToken(accessToken);
+	}
+	
+	@Override
+	public AccessToken buildAccessToken(String token, String tokenSecret, String userId) {
+		//Check the id
+		long id=DEFAULT_USER_ID;
+		try {
+			if(SocialUtil.checkString(userId))
+				id=Long.parseLong(userId);
+		}
+		catch(NumberFormatException e) {
+			throw new NumberFormatException(USER_ID_NOT_VALID + " \'" + userId + "\'");
+		}
+		
+		return new AccessToken(token, tokenSecret, id);
 	}
 	
 	@Override
@@ -351,4 +384,7 @@ public class TwitterConnector implements TwitterService {
 	
 	private Twitter twitter;
 	private AccessToken accessToken;
+	
+	private static final long DEFAULT_USER_ID=-1l;
+	public static final String USER_ID_NOT_VALID="The number format of user_id parameter is not valid";
 }

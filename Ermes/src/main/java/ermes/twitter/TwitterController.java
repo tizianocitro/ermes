@@ -51,12 +51,18 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: Il valore associato al token\n"
+					+ "- token_secret: il secret associato al token\n"
+					+ "- user_id: L'id dell'utente associato al token\n"
 					+ "- image_url: l'url dell'immagine da pubblicare\n"
 					+ "- text: il testo in allegato all'immagine da pubblicare")
 	@RequestMapping(value="/postImage", method={RequestMethod.POST, RequestMethod.GET})
 	public ResponseEntity<SocialResponse<PublishResponse>> postImage (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
+			@ApiParam(value="Il secret associato al token") @RequestParam(value="token_secret", required=false) String tokenSecret,
+			@ApiParam(value="L'id dell'utente associato al token") @RequestParam(value="user_id", required=false) String userId,
 			@ApiParam(value="L'url dell'immagine da pubblicare") @RequestParam(value="image_url", required=false) String imageUrl,
 			@ApiParam(value="Il testo in allegato all'immagine da pubblicare") @RequestParam(value="text", required=false) String text,
 			HttpServletRequest request) {
@@ -80,11 +86,17 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: Il valore associato al token\n"
+					+ "- token_secret: il secret associato al token\n"
+					+ "- user_id: L'id dell'utente associato al token\n"
 					+ "- text: il testo del tweet da pubblicare")
 	@RequestMapping(value="/postTweet", method={RequestMethod.POST, RequestMethod.GET})
 	public ResponseEntity<SocialResponse<PublishResponse>> postTweet (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
+			@ApiParam(value="Il secret associato al token") @RequestParam(value="token_secret", required=false) String tokenSecret,
+			@ApiParam(value="L'id dell'utente associato al token") @RequestParam(value="user_id", required=false) String userId,
 			@ApiParam(value="Il testo del tweet da pubblicare") @RequestParam(value="text", required=false) String text,
 			HttpServletRequest request) {
 		logger.debug("Servizio twitter/postTweet");
@@ -106,12 +118,18 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: Il valore associato al token\n"
+					+ "- token_secret: il secret associato al token\n"
+					+ "- user_id: L'id dell'utente associato al token\n"
 					+ "- video_url: l'url del video da pubblicare\n"
 					+ "- text: il testo in allegato al video da pubblicare")
 	@RequestMapping(value="/postVideo", method={RequestMethod.POST, RequestMethod.GET})
 	public ResponseEntity<SocialResponse<PublishResponse>> postVideo (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
+			@ApiParam(value="Il secret associato al token") @RequestParam(value="token_secret", required=false) String tokenSecret,
+			@ApiParam(value="L'id dell'utente associato al token") @RequestParam(value="user_id", required=false) String userId,
 			@ApiParam(value="L'url del video da pubblicare") @RequestParam(value="video_url", required=false) String videoUrl,
 			@ApiParam(value="Il testo in allegato al video da pubblicare") @RequestParam(value="text", required=false) String text,
 			HttpServletRequest request) {
