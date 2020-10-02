@@ -2,7 +2,7 @@ package ermes.twitter;
 
 import ermes.response.SocialResponse;
 import ermes.response.data.PublishResponse;
-import ermes.response.data.TwitterAuthorizationResponse;
+import ermes.response.data.twitter.TwitterAuthorizationResponse;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;

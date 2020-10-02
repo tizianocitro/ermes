@@ -11,6 +11,7 @@ import com.pengrad.telegrambot.request.SendVideo;
 import com.pengrad.telegrambot.response.SendResponse;
 import ermes.response.SocialResponse;
 import ermes.response.data.PublishResponse;
+import ermes.response.data.telegram.TelegramPublishResponse;
 import ermes.util.SocialUtil;
 
 @Service
@@ -41,9 +42,9 @@ public class TelegramConnector implements TelegramService {
 	}
 	
 	@Override
-	public SocialResponse<PublishResponse> sendMessage(String chatId, String messageText) {
+	public SocialResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
 		//Create the response
-		SocialResponse<PublishResponse> socialResponse=new SocialResponse<PublishResponse>();
+		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
 		
 		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(messageText))
 			return socialResponse.error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
@@ -71,15 +72,15 @@ public class TelegramConnector implements TelegramService {
 		
 		//Build successful response
 		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
-			.setData(new PublishResponse(getMessageUrl(sendResponse, notPublic)));
+			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 		
 		return socialResponse;
 	}
 	
 	@Override
-	public SocialResponse<PublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
+	public SocialResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
 		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(imageUrl))
-			return new SocialResponse<PublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
+			return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
@@ -99,12 +100,12 @@ public class TelegramConnector implements TelegramService {
 			errorMessage=e.getMessage();
 		}
 		
-		return new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage);
+		return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage);
 	}
 	
-	private SocialResponse<PublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
+	private SocialResponse<TelegramPublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
 		//Create the response
-		SocialResponse<PublishResponse> socialResponse=new SocialResponse<PublishResponse>();
+		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -145,15 +146,15 @@ public class TelegramConnector implements TelegramService {
 		
 		//Build successful response
 		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
-			.setData(new PublishResponse(getMessageUrl(sendResponse, notPublic)));
+			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 		
 		return socialResponse;
 	}
 	
 	@Override
-	public SocialResponse<PublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
+	public SocialResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
 		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(videoUrl))
-			return new SocialResponse<PublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
+			return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
@@ -173,12 +174,12 @@ public class TelegramConnector implements TelegramService {
 			errorMessage=e.getMessage();
 		}
 		
-		return new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage);
+		return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage);
 	}
 	
-	private SocialResponse<PublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
+	private SocialResponse<TelegramPublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
 		//Create the response
-		SocialResponse<PublishResponse> socialResponse=new SocialResponse<PublishResponse>();
+		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -210,7 +211,7 @@ public class TelegramConnector implements TelegramService {
 		
 		//Build successful response
 		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
-			.setData(new PublishResponse(getMessageUrl(sendResponse, notPublic)));
+			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 		
 		return socialResponse;
 	}
@@ -327,9 +328,9 @@ public class TelegramConnector implements TelegramService {
 	}
 	
 	//Return the proper error response get by Telegram
-	private SocialResponse<PublishResponse> getErrorResponse(SendResponse sendResponse){
+	private SocialResponse<TelegramPublishResponse> getErrorResponse(SendResponse sendResponse){
 		//Create the response
-		SocialResponse<PublishResponse> socialResponse=new SocialResponse<PublishResponse>();
+		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
 
 		//Check the specific error in order to customize it
 		if(sendResponse.description().equalsIgnoreCase(TELEGRAM_BOT_NOT_FOUND))

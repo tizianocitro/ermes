@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ermes.response.SocialResponse;
 import ermes.response.data.PublishResponse;
-import ermes.response.data.TwitterAuthorizationResponse;
+import ermes.response.data.twitter.TwitterAuthorizationResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 

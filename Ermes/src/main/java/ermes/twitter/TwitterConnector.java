@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 import ermes.response.SocialResponse;
 import ermes.response.data.PublishResponse;
-import ermes.response.data.TwitterAuthorizationResponse;
+import ermes.response.data.twitter.TwitterAuthorizationResponse;
 import ermes.util.SocialUtil;
 import twitter4j.Status;
 import twitter4j.StatusUpdate;

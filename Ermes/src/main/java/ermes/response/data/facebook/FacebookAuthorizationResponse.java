@@ -1,4 +1,4 @@
-package ermes.response.data;
+package ermes.response.data.facebook;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

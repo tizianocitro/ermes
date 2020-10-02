@@ -11,8 +11,8 @@ import com.restfb.scope.ScopeBuilder;
 import com.restfb.types.Page;
 import com.restfb.types.User;
 import ermes.response.SocialResponse;
-import ermes.response.data.FacebookAuthorizationResponse;
 import ermes.response.data.PublishResponse;
+import ermes.response.data.facebook.FacebookAuthorizationResponse;
 
 public interface FacebookService {
 	//Authentication management

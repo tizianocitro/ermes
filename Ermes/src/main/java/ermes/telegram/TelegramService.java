@@ -2,7 +2,7 @@ package ermes.telegram;
 
 import com.pengrad.telegrambot.TelegramBot;
 import ermes.response.SocialResponse;
-import ermes.response.data.PublishResponse;
+import ermes.response.data.telegram.TelegramPublishResponse;
 
 public interface TelegramService {
 	//Connection management
@@ -13,9 +13,9 @@ public interface TelegramService {
 	public String manageChatId(String chatId);
 	
 	//Interaction
-	public SocialResponse<PublishResponse> sendMessage(String chatId, String messageText);
-	public SocialResponse<PublishResponse> sendPhoto(String chatId, String imageUrl, String messageText);
-	public SocialResponse<PublishResponse> sendVideo(String chatId, String videoUrl, String messageText);
+	public SocialResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText);
+	public SocialResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText);
+	public SocialResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText);
 	
 	//Getter and setter
 	public TelegramBot getTelegramBot();
