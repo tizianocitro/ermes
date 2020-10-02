@@ -53,6 +53,7 @@ public class FacebookController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: il valore associato al token\n"
 					+ "- permissions: i permessi necessari alla pubblicazione (attualmente: pages_manage_posts,pages_read_engagement,pages_show_list)\n"
 					+ "- page_name: il nome della pagina su cui pubblicare\n"
 					+ "- image_url: l'url dell'immagine da pubblicare\n"
@@ -61,6 +62,7 @@ public class FacebookController {
 	public ResponseEntity<SocialResponse<PublishResponse>> postImage (		
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="I permessi necessari alla pubblicazione") @RequestParam(value="permissions", required=false) String permissions,
 			@ApiParam(value="Il nome della pagina su cui pubblicare") @RequestParam(value="page_name", required=false) String pageName,
 			@ApiParam(value="L'url dell'immagine da pubblicare") @RequestParam(value="image_url", required=false) String imageUrl,
@@ -87,6 +89,7 @@ public class FacebookController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: il valore associato al token\n"
 					+ "- permissions: i permessi necessari alla pubblicazione (attualmente: pages_manage_posts,pages_read_engagement,pages_show_list)\n"
 					+ "- page_name: il nome della pagina su cui pubblicare\n"
 					+ "- text: il testo dello status da pubblicare")
@@ -94,6 +97,7 @@ public class FacebookController {
 	public ResponseEntity<SocialResponse<PublishResponse>> postStatus (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="I permessi necessari alla pubblicazione") @RequestParam(value="permissions", required=false) String permissions,
 			@ApiParam(value="Il nome della pagina su cui pubblicare") @RequestParam(value="page_name", required=false) String pageName,
 			@ApiParam(value="Il testo dello status da pubblicare") @RequestParam(value="text", required=false) String text,
@@ -118,14 +122,16 @@ public class FacebookController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
+					+ "- token: il valore associato al token\n"
 					+ "- permissions: i permessi necessari alla pubblicazione (attualmente: pages_manage_posts,pages_read_engagement,pages_show_list)\n"
 					+ "- page_name: il nome della pagina su cui pubblicare\n"
 					+ "- video_url: l'url del video da pubblicare\n"
-					+ "- text: Il testo in allegato al video da pubblicare")
+					+ "- text: il testo in allegato al video da pubblicare")
 	@RequestMapping(value="/postVideo", method={RequestMethod.POST, RequestMethod.GET})
 	public ResponseEntity<SocialResponse<PublishResponse>> postVideo (		
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
+			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="I permessi necessari alla pubblicazione") @RequestParam(value="permissions", required=false) String permissions,
 			@ApiParam(value="Il nome della pagina su cui pubblicare") @RequestParam(value="page_name", required=false) String pageName,
 			@ApiParam(value="L'url del video da pubblicare") @RequestParam(value="video_url", required=false) String videoUrl,

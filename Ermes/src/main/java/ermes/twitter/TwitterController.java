@@ -51,9 +51,9 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
-					+ "- token: Il valore associato al token\n"
+					+ "- token: il valore associato al token\n"
 					+ "- token_secret: il secret associato al token\n"
-					+ "- user_id: L'id dell'utente associato al token\n"
+					+ "- user_id: l'id dell'utente associato al token\n"
 					+ "- image_url: l'url dell'immagine da pubblicare\n"
 					+ "- text: il testo in allegato all'immagine da pubblicare")
 	@RequestMapping(value="/postImage", method={RequestMethod.POST, RequestMethod.GET})
@@ -86,9 +86,9 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
-					+ "- token: Il valore associato al token\n"
+					+ "- token: il valore associato al token\n"
 					+ "- token_secret: il secret associato al token\n"
-					+ "- user_id: L'id dell'utente associato al token\n"
+					+ "- user_id: l'id dell'utente associato al token\n"
 					+ "- text: il testo del tweet da pubblicare")
 	@RequestMapping(value="/postTweet", method={RequestMethod.POST, RequestMethod.GET})
 	public ResponseEntity<SocialResponse<PublishResponse>> postTweet (
@@ -118,9 +118,9 @@ public class TwitterController {
 					+ "Fornire i seguenti parametri:\n"
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione\n"
-					+ "- token: Il valore associato al token\n"
+					+ "- token: il valore associato al token\n"
 					+ "- token_secret: il secret associato al token\n"
-					+ "- user_id: L'id dell'utente associato al token\n"
+					+ "- user_id: l'id dell'utente associato al token\n"
 					+ "- video_url: l'url del video da pubblicare\n"
 					+ "- text: il testo in allegato al video da pubblicare")
 	@RequestMapping(value="/postVideo", method={RequestMethod.POST, RequestMethod.GET})
