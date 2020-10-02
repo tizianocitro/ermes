@@ -3287,3 +3287,605 @@ com.restfb.exception.FacebookOAuthException: Received Facebook error response of
 2020-10-02 10:34:57.124 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookController        : Servizio facebook/postImage
 2020-10-02 10:37:41.616  INFO   --- [on(5)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
 2020-10-02 10:37:41.633  INFO   --- [on(5)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:39:34.012  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3792 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 10:39:34.016 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 10:39:34.016  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 10:39:34.583  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 10:39:34.592  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:39:34.592  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 10:39:34.592  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 10:39:34.636  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 10:39:34.636  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 597 ms
+2020-10-02 10:39:34.874  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 10:39:34.919  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:39:35.016  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:39:35.040  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 10:39:35.041  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 10:39:35.053  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 10:39:35.073  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 10:39:35.205  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 10:39:35.211  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 10:39:35.218  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 10:39:35.226  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 10:39:35.229  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 10:39:35.233  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 10:39:35.238  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 10:39:35.241  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 10:39:35.242  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 10:39:35.246  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 10:39:35.248  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 10:39:35.250  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 10:39:35.260  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.408 seconds (JVM running for 2.025)
+2020-10-02 10:39:37.141  INFO   --- [nio-8080-exec-2] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 10:39:37.141  INFO   --- [nio-8080-exec-2] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 10:39:37.142  INFO   --- [nio-8080-exec-2] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 10:39:37.146 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:39:37.149 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 10:39:37.559 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro con acees token ricevuto
+2020-10-02 10:39:37.577 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:43:32.329  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 10:43:32.346  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:43:33.769  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3801 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 10:43:33.773 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 10:43:33.774  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 10:43:34.333  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 10:43:34.342  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:43:34.342  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 10:43:34.343  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 10:43:34.380  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 10:43:34.380  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 584 ms
+2020-10-02 10:43:34.622  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 10:43:34.666  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:43:34.763  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:43:34.780  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 10:43:34.781  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 10:43:34.792  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 10:43:34.810  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 10:43:34.931  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 10:43:34.937  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 10:43:34.943  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 10:43:34.950  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 10:43:34.953  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 10:43:34.957  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 10:43:34.962  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 10:43:34.965  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 10:43:34.966  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 10:43:34.970  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 10:43:34.972  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 10:43:34.974  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 10:43:34.983  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.387 seconds (JVM running for 2.086)
+2020-10-02 10:43:41.957  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 10:43:41.957  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 10:43:41.958  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 10:43:41.962 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:43:41.964 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 10:43:42.378 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Permessi revocati
+2020-10-02 10:43:42.382 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi revocati
+2020-10-02 10:43:42.397 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:44:05.380 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:44:05.381 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:44:05.852 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:44:05.852 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:44:05.853 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:44:05.963 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:45:37.268 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:45:37.268 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:45:38.010 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:45:38.011 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:45:38.011 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:45:38.226 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:45:44.983 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:45:44.984 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:45:44.984 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:45:45.157 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:45:45.157 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:45:45.242 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:45:45.242 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:45:45.242 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:45:45.243 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:45:53.857 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:45:53.857 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 10:45:54.045 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 10:45:54.047 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:48:02.216 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:48:02.216 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:48:02.500 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:48:02.500 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:48:02.500 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:48:02.711 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postStatus
+2020-10-02 10:49:18.782 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:49:18.783 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:49:19.228 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:49:19.228 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:49:19.228 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:49:19.457 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:49:19.458 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/postStatus
+2020-10-02 10:49:44.744 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:49:44.744 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:49:45.223 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:49:45.223 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:49:45.223 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:49:45.351 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookController        : Servizio facebook/postStatus
+2020-10-02 10:50:09.216 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:50:09.217 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:50:09.578 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:50:09.578 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:50:09.578 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:50:09.785 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:50:09.785 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postStatus
+2020-10-02 10:50:53.400 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:50:53.401 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:50:53.687 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:50:53.687 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:50:53.688 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:50:53.852 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:51:02.245 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:51:02.245 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:51:02.620 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:51:02.620 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:51:02.620 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:51:02.856 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:51:02.857 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:51:40.812 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:51:40.812 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:51:41.134 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:51:41.134 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:51:41.134 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:51:41.289 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:52:13.816 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:13.816 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:52:14.116 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:14.116 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:14.116 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:14.332 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:52:20.870 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:20.870 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:20.871 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:21.063 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:52:21.064 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:52:21.142 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:21.142 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:21.143 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:21.143 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:52:42.008 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:42.008 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:52:42.379 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:42.379 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:42.379 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:42.573 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:52:52.705 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:52.705 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:52.705 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:52.903 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:52:52.904 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:52:53.054 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:52:53.054 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:52:53.055 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:52:53.055 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:53:03.919 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:03.919 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 10:53:04.118 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 10:53:04.119 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:53:16.030 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:16.030 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:53:16.374 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:16.374 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:53:16.374 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:53:16.544 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:53:16.545 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:53:34.596 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:34.596 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:53:34.904 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:34.905 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:53:34.905 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:53:35.310 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:53:42.617 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:42.617 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:53:42.617 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:53:42.777 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:53:42.778 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:53:42.856 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:53:42.856 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:53:42.856 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:53:42.856 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:54:06.135 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:54:06.136 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:54:06.445 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:54:06.445 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:54:06.445 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:54:06.703 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:54:13.654 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:54:13.655 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:54:13.655 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:54:13.853 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:54:13.854 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:54:14.044 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:54:14.045 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:54:14.045 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:54:14.045 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookController        : Servizio facebook/authorization
+2020-10-02 10:55:00.871 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:55:00.872 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:55:01.234 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:55:01.234 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:55:01.235 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:55:01.468 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:55:01.468 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:56:01.098 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:56:01.098 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 10:56:01.327 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Permessi revocati
+2020-10-02 10:56:01.328 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi revocati
+2020-10-02 10:56:01.329 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:56:23.329 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:56:23.329 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:56:23.749 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:56:23.750 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:56:23.750 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:56:24.047 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:56:35.662 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:56:35.662 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:56:35.662 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:56:35.916 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 10:56:35.917 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:56:40.257 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:56:40.257 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:56:40.257 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:56:40.258 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:58:55.798  INFO   --- [on(5)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 10:58:55.813  INFO   --- [on(5)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:58:57.126  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3890 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 10:58:57.130 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 10:58:57.131  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 10:58:57.723  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 10:58:57.732  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:58:57.733  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 10:58:57.733  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 10:58:57.779  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 10:58:57.779  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 625 ms
+2020-10-02 10:58:58.028  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 10:58:58.074  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 10:58:58.170  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 10:58:58.194  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 10:58:58.195  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 10:58:58.205  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 10:58:58.224  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 10:58:58.357  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 10:58:58.364  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 10:58:58.370  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 10:58:58.379  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 10:58:58.383  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 10:58:58.387  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 10:58:58.394  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 10:58:58.397  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 10:58:58.399  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 10:58:58.403  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 10:58:58.406  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 10:58:58.408  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 10:58:58.419  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.465 seconds (JVM running for 2.082)
+2020-10-02 10:59:37.110  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 10:59:37.110  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 10:59:37.111  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 10:59:37.116 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:59:37.120 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:59:37.506 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:59:37.506 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 10:59:37.506 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 10:59:38.014 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 10:59:42.332 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:59:42.333 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:59:42.349 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 10:59:42.385 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 10:59:42.385 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 10:59:42.386 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:02:15.360  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 11:02:15.378  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:02:16.504  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3912 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 11:02:16.508 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 11:02:16.509  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 11:02:17.074  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 11:02:17.083  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:02:17.083  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 11:02:17.084  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 11:02:17.121  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 11:02:17.121  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 590 ms
+2020-10-02 11:02:17.342  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 11:02:17.379  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:02:17.465  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:02:17.480  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 11:02:17.481  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 11:02:17.491  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 11:02:17.508  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 11:02:17.622  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 11:02:17.627  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 11:02:17.633  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 11:02:17.639  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 11:02:17.643  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 11:02:17.646  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 11:02:17.651  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 11:02:17.654  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 11:02:17.655  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 11:02:17.659  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 11:02:17.661  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 11:02:17.663  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 11:02:17.671  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.335 seconds (JVM running for 1.772)
+2020-10-02 11:02:38.642  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 11:02:38.643  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 11:02:38.644  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 11:02:38.649 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:02:38.653 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:02:39.150 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:02:39.150 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:02:39.150 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:02:39.613 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:02:42.587 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:02:42.588 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:02:42.605 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:02:42.643 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:02:42.644 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:02:42.645 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:10:33.538  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 11:10:33.557  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:10:34.687  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3961 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 11:10:34.691 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 11:10:34.691  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 11:10:35.244  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 11:10:35.252  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:10:35.252  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 11:10:35.252  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 11:10:35.295  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 11:10:35.295  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 581 ms
+2020-10-02 11:10:35.527  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 11:10:35.571  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:10:35.660  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:10:35.683  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 11:10:35.684  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 11:10:35.696  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 11:10:35.716  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 11:10:35.850  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 11:10:35.857  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 11:10:35.864  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 11:10:35.873  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 11:10:35.878  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 11:10:35.883  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 11:10:35.889  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 11:10:35.892  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 11:10:35.894  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 11:10:35.898  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 11:10:35.901  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 11:10:35.902  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 11:10:35.914  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.395 seconds (JVM running for 1.838)
+2020-10-02 11:10:39.210  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 11:10:39.210  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 11:10:39.211  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 11:10:39.216 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:10:39.221 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:10:39.939 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:10:39.939 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:10:39.939 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:10:40.308 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:11:02.985 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:11:02.986 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:11:03.393 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:11:03.393 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:11:03.394 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:11:03.595 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:11:06.767 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:11:06.767 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Permessi rifiutati
+2020-10-02 11:11:06.768 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi rifiutati
+2020-10-02 11:11:06.768 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:13:42.280  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 11:13:42.298  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:13:43.664  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 3979 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 11:13:43.669 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 11:13:43.669  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 11:13:44.244  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 11:13:44.253  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:13:44.253  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 11:13:44.254  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 11:13:44.298  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 11:13:44.298  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 606 ms
+2020-10-02 11:13:44.538  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 11:13:44.583  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:13:44.677  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:13:44.703  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 11:13:44.703  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 11:13:44.715  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 11:13:44.734  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 11:13:44.865  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 11:13:44.871  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 11:13:44.878  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 11:13:44.885  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 11:13:44.889  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 11:13:44.892  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 11:13:44.897  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 11:13:44.900  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 11:13:44.901  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 11:13:44.905  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 11:13:44.907  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 11:13:44.909  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 11:13:44.918  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.424 seconds (JVM running for 2.101)
+2020-10-02 11:13:51.277  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 11:13:51.277  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 11:13:51.278  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 11:13:51.283 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:51.288 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:13:51.754 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:51.754 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:13:51.754 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:13:52.226 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:13:55.178 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:55.179 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Permessi rifiutati
+2020-10-02 11:13:55.179 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi rifiutati
+2020-10-02 11:13:55.196 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:13:55.235 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:55.236 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Permessi rifiutati
+2020-10-02 11:13:55.236 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi rifiutati
+2020-10-02 11:13:55.237 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:13:58.413 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:58.413 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:13:58.802 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:13:58.802 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:13:58.803 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:13:58.964 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:14:05.384 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:14:05.385 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:14:05.385 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:14:05.572 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:14:05.573 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:14:09.865 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:14:09.866 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:14:09.866 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:14:09.867 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:14:38.473 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:14:38.474 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:14:38.946 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:14:38.947 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:14:38.947 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:14:39.237 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:14:39.238 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:15:33.477  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 11:15:33.494  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:15:34.657  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 4001 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 11:15:34.661 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 11:15:34.662  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 11:15:35.209  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 11:15:35.217  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:15:35.217  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 11:15:35.217  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 11:15:35.256  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 11:15:35.256  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 571 ms
+2020-10-02 11:15:35.478  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 11:15:35.521  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 11:15:35.616  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 11:15:35.641  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 11:15:35.642  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 11:15:35.654  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 11:15:35.673  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 11:15:35.800  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 11:15:35.806  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 11:15:35.813  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 11:15:35.820  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 11:15:35.824  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 11:15:35.828  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 11:15:35.833  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 11:15:35.836  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 11:15:35.837  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 11:15:35.841  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 11:15:35.843  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 11:15:35.845  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 11:15:35.855  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.37 seconds (JVM running for 1.812)
+2020-10-02 11:15:54.762  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 11:15:54.762  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 11:15:54.763  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 11:15:54.768 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:15:54.771 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:15:54.792 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:17:01.772 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:17:01.773 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:17:02.236 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:17:02.238 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:17:37.985 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:17:37.985 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:17:38.176 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Permessi revocati
+2020-10-02 11:17:38.176 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi revocati
+2020-10-02 11:17:38.177 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:18:13.536 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:18:13.537 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:18:15.399 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:18:15.399 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:18:15.399 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:18:15.679 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:18:24.794 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:18:24.795 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:18:24.795 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:18:24.956 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:18:24.957 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:18:29.550 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:18:29.550 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:18:29.550 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:18:29.551 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:20:46.536 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:20:46.537 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:20:49.836 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:20:49.836 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:20:49.836 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:20:50.154 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:20:50.155 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:21:47.831 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:21:47.832 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:21:47.832 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:21:50.935 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:21:50.936 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:21:51.261 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:21:51.261 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:21:51.261 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:21:51.452 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:22:15.923 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:22:15.924 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:22:16.879 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:22:16.879 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:22:16.880 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:22:16.979 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:24:09.057 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:24:09.058 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:24:20.983 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:24:20.983 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:24:20.984 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:24:21.277 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:24:21.278 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:24:25.398 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:24:25.399 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:24:25.399 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:24:25.399 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:30:09.020 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:30:09.020 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:30:09.254 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:30:09.255 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:30:33.867 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:30:33.867 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:30:34.079 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:30:34.080 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:30:39.502 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:30:39.502 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:30:39.768 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:30:39.769 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:30:56.172 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:30:56.173 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:30:56.367 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:30:56.368 DEBUG   --- [nio-8080-exec-4] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:33:13.626 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:33:13.626 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:33:13.627 DEBUG   --- [nio-8080-exec-6] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:33:25.859 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:33:25.860 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:33:26.267 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:33:26.267 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:33:26.267 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:33:26.563 DEBUG   --- [nio-8080-exec-8] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:33:33.100 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:33:33.100 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Permessi rifiutati
+2020-10-02 11:33:33.100 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookFilter            : Esco dal filtro a causa di permessi rifiutati
+2020-10-02 11:33:33.101 DEBUG   --- [nio-8080-exec-9] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:34:05.278 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:34:05.278 DEBUG   --- [io-8080-exec-10] ermes.facebook.FacebookFilter            : Reindirizzamento a Facebook
+2020-10-02 11:34:05.690 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:34:05.690 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:34:05.690 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:34:06.018 DEBUG   --- [nio-8080-exec-1] ermes.facebook.FacebookFilter            : Richiedo permessi
+2020-10-02 11:34:12.621 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:34:12.621 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:34:12.621 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:34:12.821 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookFilter            : Esco dal filtro
+2020-10-02 11:34:12.822 DEBUG   --- [nio-8080-exec-2] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:34:17.469 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:34:17.469 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Ottengo il codice
+2020-10-02 11:34:17.470 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookFilter            : Creo la connessione
+2020-10-02 11:34:17.470 DEBUG   --- [nio-8080-exec-3] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:35:30.453 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:35:30.453 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:35:30.571 DEBUG   --- [nio-8080-exec-5] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:35:42.571 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Entro nel filtro
+2020-10-02 11:35:42.571 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Creo la connessione con l'access token ricevuto
+2020-10-02 11:35:42.769 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookFilter            : Esco dal filtro con access token ricevuto
+2020-10-02 11:35:42.770 DEBUG   --- [nio-8080-exec-7] ermes.facebook.FacebookController        : Servizio facebook/postImage
+2020-10-02 11:36:05.279  INFO   --- [on(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 11:36:05.296  INFO   --- [on(4)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'

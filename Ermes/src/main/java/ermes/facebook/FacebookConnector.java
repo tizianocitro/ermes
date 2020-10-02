@@ -103,6 +103,11 @@ public class FacebookConnector implements FacebookService {
 	}
 	
 	@Override
+	public boolean verifyPermissionsDenied(String denied) {
+		return SocialUtil.checkString(denied);
+	}
+	
+	@Override
 	public SocialResponse<FacebookAuthorizationResponse> authorization() {
 		//Create the response
 		SocialResponse<FacebookAuthorizationResponse> socialResponse=new SocialResponse<FacebookAuthorizationResponse>();

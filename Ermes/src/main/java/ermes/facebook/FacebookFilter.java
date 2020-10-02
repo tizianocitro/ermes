@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import com.restfb.exception.FacebookOAuthException;
 import com.restfb.scope.ScopeBuilder;
 import ermes.facebook.FacebookService.FacebookServicePermission;
+import ermes.twitter.TwitterService;
 import ermes.util.SocialUtil;
 
 @Configuration
@@ -48,32 +49,74 @@ public class FacebookFilter implements Filter {
 				//Check if the token is not valid or expired
 				facebook.isTokenExpiredOrNotValid();
 				
-				//Pass the needed parameters to the service
-				SocialUtil.setResponseAttribute(httpRequest);
-				
-				logger.debug("Esco dal filtro con acees token ricevuto");
-				
-				//Invalidate the session before leaving
-				session.invalidate();
+				//Permission management
+				FacebookServicePermission permissions=facebook.managePermission(httpRequest.getParameter(FacebookService.FACEBOOK_PERMISSIONS));
+					
+				//If the user has not the needed permissions return an error
+				if(!facebook.verifyPermissions(permissions)) {
+					logger.debug("Permessi revocati");
 
-				chain.doFilter(httpRequest, httpResponse);
-			}
+					//Set the error message
+					httpRequest.setAttribute(FacebookService.FACEBOOK_ERROR, PERMISSIONS_REVOKED);
+					
+					//Pass the needed parameters to the service
+					SocialUtil.setResponseAttribute(httpRequest);
+										
+					//Invalidate the session before leaving
+					session.invalidate();
+
+					logger.debug("Esco dal filtro a causa di permessi revocati");
+
+					chain.doFilter(httpRequest, httpResponse);
+				}
+				else { //End permissions' check
+					//Pass the needed parameters to the service
+					SocialUtil.setResponseAttribute(httpRequest);
+										
+					//Invalidate the session before leaving
+					session.invalidate();
+
+					logger.debug("Esco dal filtro con access token ricevuto");
+
+					chain.doFilter(httpRequest, httpResponse);	
+				}
+			} //End if access token is given
 			else {
 				//If authentication or token are needed
 				if(!facebook.verifyCode(httpRequest.getParameter(FacebookService.FACEBOOK_CODE))) {
-					//Store request parameters for multiple redirections
-					SocialUtil.storeParameters(session, httpRequest);
+					//Check the error in case of access denied
+					String accessDenied=httpRequest.getParameter(TwitterService.TWITTER_ERROR);
+					if(facebook.verifyPermissionsDenied(accessDenied)) {
+						logger.debug("Permessi rifiutati");
+
+						//Set the error message
+						httpRequest.setAttribute(FacebookService.FACEBOOK_ERROR, accessDenied);
 						
-					logger.debug("Reindirizzamento a Facebook");
-						
-					httpResponse.sendRedirect(facebook.getAuthUrl(httpRequest.getParameter(FacebookService.FACEBOOK_KEY), 
-							httpRequest.getParameter(FacebookService.FACEBOOK_SECRET), callbackUrl, new ScopeBuilder()));				
+						//Pass the needed parameters to the service
+						SocialUtil.setResponseAttribute(httpRequest);
+											
+						//Invalidate the session before leaving
+						session.invalidate();
+
+						logger.debug("Esco dal filtro a causa di permessi rifiutati");
+
+						chain.doFilter(httpRequest, httpResponse);
+					}
+					else {
+						//Store request parameters for multiple redirections
+						SocialUtil.storeParameters(session, httpRequest);
+							
+						logger.debug("Reindirizzamento a Facebook");
+							
+						httpResponse.sendRedirect(facebook.getAuthUrl(httpRequest.getParameter(FacebookService.FACEBOOK_KEY), 
+								httpRequest.getParameter(FacebookService.FACEBOOK_SECRET), callbackUrl, new ScopeBuilder()));	
+					}				
 				}
 				else { //First else
 					//Get the code from Facebook
 					String code=httpRequest.getParameter(FacebookService.FACEBOOK_CODE);
 						
-					logger.debug("Ottengo il codice");
+					logger.debug("Ottengo il codice da Facebook");
 						
 					//Get parameters in order to create connection with Facebook
 					String sessionKey=(String) session.getAttribute(FacebookService.FACEBOOK_KEY);
@@ -97,12 +140,12 @@ public class FacebookFilter implements Filter {
 					else { //Second else
 						//Pass the parameters needed to the service
 						SocialUtil.setResponseAttribute(session, httpRequest);
-						
-						logger.debug("Esco dal filtro");
-							
+													
 						//Invalidate the session before leaving
 						session.invalidate();
 	
+						logger.debug("Esco dal filtro");
+
 						chain.doFilter(httpRequest, httpResponse);
 					} //End second else
 				} //End first else
@@ -128,4 +171,6 @@ public class FacebookFilter implements Filter {
 	private String domain;
 	
 	public static final String FACEBOOK_FILTER="/facebook/*";
+	
+	public static final String PERMISSIONS_REVOKED="Permissions revoked, check if the user revoked the needed permissions";
 }

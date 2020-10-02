@@ -24,6 +24,7 @@ public interface FacebookService {
 	public boolean isTokenGiven(String token);
 	public boolean verifyApplicationInfo(String key);
 	public boolean verifyCode(String code);
+	public boolean verifyPermissionsDenied(String denied);
 	public String getServiceName(StringBuffer path, String key);
 	public SocialResponse<FacebookAuthorizationResponse> authorization();
 	
