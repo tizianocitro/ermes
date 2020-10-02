@@ -82,7 +82,7 @@ public class FacebookFilter implements Filter {
 				}
 			} //End if access token is given
 			else {
-				//If authentication or token are needed
+				//If authentication is needed
 				if(!facebook.verifyCode(httpRequest.getParameter(FacebookService.FACEBOOK_CODE))) {
 					//Check the error in case of access denied
 					String accessDenied=httpRequest.getParameter(TwitterService.TWITTER_ERROR);
@@ -116,7 +116,7 @@ public class FacebookFilter implements Filter {
 					//Get the code from Facebook
 					String code=httpRequest.getParameter(FacebookService.FACEBOOK_CODE);
 						
-					logger.debug("Ottengo il codice da Facebook");
+					logger.debug("Ho ottenuto il codice da Facebook");
 						
 					//Get parameters in order to create connection with Facebook
 					String sessionKey=(String) session.getAttribute(FacebookService.FACEBOOK_KEY);
