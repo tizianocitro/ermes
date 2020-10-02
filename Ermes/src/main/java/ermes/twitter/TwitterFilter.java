@@ -40,7 +40,7 @@ public class TwitterFilter implements Filter {
 			if(twitter.isTokenGiven(httpRequest.getParameter(TwitterService.TWITTER_ACCESS_TOKEN), 
 					httpRequest.getParameter(TwitterService.TWITTER_ACCESS_TOKEN_SECRET))) {
 				
-				logger.debug("Costruisco la connessione con l'access token ricevuto");
+				logger.debug("creo la connessione con l'access token ricevuto");
 				
 				//Build the connection to Twitter
 				twitter.configAccessToken(

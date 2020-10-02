@@ -18,8 +18,10 @@ public interface FacebookService {
 	//Authentication management
 	public String getAuthUrl(String key, String secret, String callbackUrl, ScopeBuilder scopeBuilder);
 	public void createConnection(String key, String secret, String callbackUrl, String code);
+	public void createConnection(String token);
 	public boolean verifyConnection(String key);
-	public boolean isTokenExpired();
+	public boolean isTokenExpiredOrNotValid();
+	public boolean isTokenGiven(String token);
 	public boolean verifyApplicationInfo(String key);
 	public boolean verifyCode(String code);
 	public String getServiceName(StringBuffer path, String key);
@@ -83,6 +85,7 @@ public interface FacebookService {
 	public static final String FACEBOOK_KEY="key";
 	public static final String FACEBOOK_SECRET="secret";
 	public static final String FACEBOOK_PERMISSIONS="permissions";
+	public static final String FACEBOOK_ACCESS_TOKEN="token";
 
 	//Status types
 	public static final String FACEBOOK_STATUS_MESSAGE="message";

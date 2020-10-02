@@ -48,15 +48,26 @@ public class FacebookConnector implements FacebookService {
 	}
 	
 	@Override
+	public void createConnection(String token) {
+		//Build the access token from a given value
+		String queryString=ACCESS_TOKEN_QUERY_STRING + token;
+		AccessToken accessToken=AccessToken.fromQueryString(queryString);
+		
+		//Build connection
+		this.accessToken=accessToken;
+		facebookClient=new DefaultFacebookClient(this.accessToken.getAccessToken(), Version.LATEST);
+	}
+	
+	@Override
 	public boolean verifyConnection(String key) {
-		if(isTokenExpired() || !verifyApplicationInfo(key))
+		if(isTokenExpiredOrNotValid() || !verifyApplicationInfo(key))
 			return false;
 		
 		return true;
 	}
 	
 	@Override
-	public boolean isTokenExpired() {
+	public boolean isTokenExpiredOrNotValid() {
 		if(accessToken==null)
 			return true;
 		
@@ -65,6 +76,11 @@ public class FacebookConnector implements FacebookService {
 			return true;
 			
 		return false;
+	}
+	
+	@Override
+	public boolean isTokenGiven(String token) {
+		return SocialUtil.checkString(token);
 	}
 	
 	@Override
@@ -501,6 +517,9 @@ public class FacebookConnector implements FacebookService {
 
 	private FacebookClient facebookClient;
 	private AccessToken accessToken;
+	
+	//Needed to build the access token
+	private static final String ACCESS_TOKEN_QUERY_STRING="access_token=";
 	
 	@Autowired
 	private FacebookServicePermission permissionFactory;
