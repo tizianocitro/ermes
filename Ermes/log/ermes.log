@@ -4283,3 +4283,37 @@ java.lang.NullPointerException
 2020-10-02 15:31:06.453 DEBUG   --- [nio-8080-exec-7] ermes.telegram.TelegramController        : Servizio telegram/sendVideo
 2020-10-02 15:31:41.233  INFO   --- [on(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
 2020-10-02 15:31:41.250  INFO   --- [on(3)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-02 15:43:07.909  INFO   --- [           main] ermes.ermes.ErmesApplication             : Starting ErmesApplication using Java 1.8.0_231 on MacBook-Pro-di-Tiziano.local with PID 5579 (/Users/tizianocitro/git/Ermes/Ermes/target/classes started by tizianocitro in /Users/tizianocitro/git/Ermes/Ermes)
+2020-10-02 15:43:07.914 DEBUG   --- [           main] ermes.ermes.ErmesApplication             : Running with Spring Boot v2.4.0-SNAPSHOT, Spring v5.3.0-M2
+2020-10-02 15:43:07.914  INFO   --- [           main] ermes.ermes.ErmesApplication             : No active profile set, falling back to default profiles: default
+2020-10-02 15:43:08.504  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2020-10-02 15:43:08.512  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-02 15:43:08.512  INFO   --- [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-10-02 15:43:08.512  INFO   --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-10-02 15:43:08.553  INFO   --- [           main] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring embedded WebApplicationContext
+2020-10-02 15:43:08.553  INFO   --- [           main] ntext.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 615 ms
+2020-10-02 15:43:08.791  INFO   --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-10-02 15:43:08.839  INFO   --- [           main] duling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-02 15:43:08.936  INFO   --- [           main] g.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-10-02 15:43:08.961  INFO   --- [           main] boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '/ermes'
+2020-10-02 15:43:08.962  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Context refreshed
+2020-10-02 15:43:08.973  INFO   --- [           main] plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-10-02 15:43:08.991  INFO   --- [           main] .web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+2020-10-02 15:43:09.116  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_1
+2020-10-02 15:43:09.122  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postStatusUsingPOST_1
+2020-10-02 15:43:09.128  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_1
+2020-10-02 15:43:09.137  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendMessageUsingPOST_1
+2020-10-02 15:43:09.141  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendPhotoUsingPOST_1
+2020-10-02 15:43:09.144  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: sendVideoUsingPOST_1
+2020-10-02 15:43:09.149  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: authorizationUsingGET_1
+2020-10-02 15:43:09.152  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_2
+2020-10-02 15:43:09.153  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postImageUsingPOST_3
+2020-10-02 15:43:09.157  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postTweetUsingPOST_1
+2020-10-02 15:43:09.159  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_2
+2020-10-02 15:43:09.161  INFO   --- [           main] .operation.CachingOperationNameGenerator : Generating unique operation named: postVideoUsingPOST_3
+2020-10-02 15:43:09.170  INFO   --- [           main] ermes.ermes.ErmesApplication             : Started ErmesApplication in 1.429 seconds (JVM running for 1.876)
+2020-10-02 15:43:16.250  INFO   --- [nio-8080-exec-1] tainerBase.[Tomcat].[localhost].[/ermes] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-02 15:43:16.250  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-10-02 15:43:16.251  INFO   --- [nio-8080-exec-1] gframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2020-10-02 15:44:45.703  INFO   --- [on(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-10-02 15:44:45.722  INFO   --- [on(3)-127.0.0.1] duling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
