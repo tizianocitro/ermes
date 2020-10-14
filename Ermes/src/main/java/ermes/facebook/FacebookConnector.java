@@ -288,7 +288,7 @@ public class FacebookConnector implements FacebookService {
 			Page page=findPageByName(result, pageName);
 			if(page!=null) {
 				//Get page's access token and id in order to publish on it
-				String pageAccessToken=page.getAccessToken();;					
+				String pageAccessToken=page.getAccessToken();					
 				String pageID=page.getId();
 	
 				//Publish the image
