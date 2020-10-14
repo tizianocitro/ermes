@@ -169,7 +169,7 @@ public class FacebookConnector implements FacebookService {
 			Page page=findPageByName(result, pageName);
 			if(page!=null) {
 				//Get page's access token and id in order to publish on it
-				String pageAccessToken=page.getAccessToken();;					
+				String pageAccessToken=page.getAccessToken();
 				String pageID=page.getId();
 				
 				//Build the message in case the status contains a link which come with message
@@ -364,7 +364,7 @@ public class FacebookConnector implements FacebookService {
 			Page page=findPageByName(result, pageName);
 			if(page!=null) {
 				//Get page's access token and id in order to publish on it
-				String pageAccessToken=page.getAccessToken();;					
+				String pageAccessToken=page.getAccessToken();
 				String pageID=page.getId();
 	
 				//Publish the image
