@@ -18,5 +18,5 @@ Sviluppato da me presso l'azienda I.T. Svil.
 | ---- | ------- |
 | Facebook | RestFB |
 | Twitter | Twitter4J |
-| Telegram | Java Telegram Bot Api |
+| Telegram | Java Telegram Bot |
 
