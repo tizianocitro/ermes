@@ -34,6 +34,7 @@ public class SocialResponse<T> implements Serializable {
 		
 		return this;
 	}
+
 	@Override
 	public String toString() {
 		return getClass().getName() + " [code=" + code + ", success=" + success + ", message=" + message + ", data=" + data + "]";
