@@ -34,11 +34,6 @@ public class SocialResponse<T> implements Serializable {
 		
 		return this;
 	}
-
-	public boolean isSuccess() {
-		return success;
-	}
-	
 	@Override
 	public String toString() {
 		return getClass().getName() + " [code=" + code + ", success=" + success + ", message=" + message + ", data=" + data + "]";
@@ -51,8 +46,8 @@ public class SocialResponse<T> implements Serializable {
 	public void setCode(String code) {
 		this.code=code;
 	}
-	
-	public boolean  getSuccess() {
+
+	public boolean isSuccess() {
 		return success;
 	}
 	
