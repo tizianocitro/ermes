@@ -23,7 +23,7 @@ public class DirtyFixConfig {
 	
 	/**
      * Because of the new Actuator implementation in Spring Boot 2, all actuator endpoints are now dynamically mapped
-     * to a single handler method: {@link org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle(javax.servlet.http.HttpServletRequest, java.util.Map)}
+     * to a single handler method: {\@link org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle(javax.servlet.http.HttpServletRequest, java.util.Map)}
      *
      * This causes 2 issues:
      * - Because the handler method has an @RequestBody annotated 'body' parameter, this parameter appears in all actuator

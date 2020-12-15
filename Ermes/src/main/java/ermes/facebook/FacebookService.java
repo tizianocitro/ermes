@@ -10,7 +10,7 @@ import com.restfb.scope.FacebookPermissions;
 import com.restfb.scope.ScopeBuilder;
 import com.restfb.types.Page;
 import com.restfb.types.User;
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.facebook.FacebookAuthorizationResponse;
 
@@ -19,6 +19,7 @@ public interface FacebookService {
 	public String getAuthUrl(String key, String secret, String callbackUrl, ScopeBuilder scopeBuilder);
 	public void createConnection(String key, String secret, String callbackUrl, String code);
 	public void createConnection(String token);
+	public AccessToken extendAccessToken(String key, String secret, AccessToken accessToken);
 	public boolean verifyConnection(String key);
 	public boolean isTokenExpiredOrNotValid();
 	public boolean isTokenGiven(String token);
@@ -26,14 +27,16 @@ public interface FacebookService {
 	public boolean verifyCode(String code);
 	public boolean verifyPermissionsDenied(String denied);
 	public String getServiceName(StringBuffer path, String key);
-	public SocialResponse<FacebookAuthorizationResponse> authorization();
+
+	//Authorization
+	public ErmesResponse<FacebookAuthorizationResponse> authorization();
 	
 	//Interaction
 	public User getUser(String fields);
 	public Connection<Page> getPages();
-	public SocialResponse<PublishResponse> postStatusOnPage(String pageName, String messageText);
-	public SocialResponse<PublishResponse> postImageOnPage(String pageName, String imageUrl, String messageText);
-	public SocialResponse<PublishResponse> postVideoOnPage(String pageName, String videoUrl, String statusText);
+	public ErmesResponse<PublishResponse> postStatusOnPage(String pageName, String messageText);
+	public ErmesResponse<PublishResponse> postImageOnPage(String pageName, String imageUrl, String messageText);
+	public ErmesResponse<PublishResponse> postVideoOnPage(String pageName, String videoUrl, String statusText);
 	
 	//Getter and setter
 	public FacebookClient getFacebookClient();
@@ -43,7 +46,7 @@ public interface FacebookService {
 		
 	//Permissions management
 	public FacebookServicePermission createPermissions();
-	public FacebookServicePermission managePermission(String permissions);
+	public FacebookServicePermission managePermissions(String permissions);
 	public List<String> readPermissions(String permissions);
 	public String requestPermissions(String key, String secret, String callbackUrl, FacebookServicePermission permissions);
 	public boolean verifyPermissions(FacebookServicePermission permissions);
@@ -81,8 +84,6 @@ public interface FacebookService {
 	public static final String FACEBOOK_ID="facebook";
 	public static final String FACEBOOK_CODE="code";
 	public static final String FACEBOOK_ERROR="error";
-	
-	//These parameters are needed in all the requests
 	public static final String FACEBOOK_KEY="key";
 	public static final String FACEBOOK_SECRET="secret";
 	public static final String FACEBOOK_PERMISSIONS="permissions";

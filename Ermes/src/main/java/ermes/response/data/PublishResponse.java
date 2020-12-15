@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description="Modella la risposta per i servizi di pubblicazione.")
 public class PublishResponse {
 	public PublishResponse() {
-
 	}
 	
 	public PublishResponse(String link) {

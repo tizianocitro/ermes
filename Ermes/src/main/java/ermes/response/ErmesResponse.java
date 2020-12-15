@@ -5,29 +5,29 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description="Modella la risposta per i servizi di integrazione con Social Networks.")
-public class SocialResponse<T> implements Serializable {
+public class ErmesResponse<T> implements Serializable {
 	private static final long serialVersionUID=3550270890579239665L;
 	
-	public SocialResponse() {
+	public ErmesResponse() {
 		clear();
 	}
 
 	public void clear() {
-		this.success=false;
+		this.success=FAIL;
 		this.code=DEFAULT_CODE;
 		this.data=null;
 	}
 	
-	public SocialResponse<T> success(String code, String message) {
-		this.success=true;
+	public ErmesResponse<T> success(String code, String message) {
+		this.success=SUCCESS;
 		this.code=code;
 		this.message=message;
 		
 		return this;
 	}
 	
-	public SocialResponse<T> error(String code, String message) {
-		this.success=false;
+	public ErmesResponse<T> error(String code, String message) {
+		this.success=FAIL;
 		this.code=code;
 		this.message=message;
 		this.data=null;
@@ -68,8 +68,10 @@ public class SocialResponse<T> implements Serializable {
 		return data;
 	}
 
-	public void setData(T data) {
+	public ErmesResponse<T> setData(T data) {
 		this.data=data;
+
+		return this;
 	}
 	
 	@ApiModelProperty(notes="Il codice associato alla risposta.", position=1)

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.telegram.TelegramPublishResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,7 +31,7 @@ public class TelegramController {
 					+ "- image_url: l'url dell'immagine da inviare\n"
 					+ "- text: il testo in allegato all'immagine da inviare")
 	@RequestMapping(value="/sendPhoto", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<TelegramPublishResponse>> sendPhoto (
+	public ResponseEntity<ErmesResponse<TelegramPublishResponse>> sendPhoto (
 			@ApiParam(value="Il token del bot") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="L'id della chat") @RequestParam(value="chat_id", required=false) String chatId,
 			@ApiParam(value="L'url dell'immagine da inviare") @RequestParam(value="image_url", required=false) String imageUrl,
@@ -42,7 +42,7 @@ public class TelegramController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TelegramService.TELEGRAM_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String id=(String) request.getAttribute("chat_id");
@@ -60,7 +60,7 @@ public class TelegramController {
 					+ "- chat_id: l'id del canale o gruppo\n"
 					+ "- text: il testo del messaggio da inviare")
 	@RequestMapping(value="/sendMessage", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<TelegramPublishResponse>> sendMessage (
+	public ResponseEntity<ErmesResponse<TelegramPublishResponse>> sendMessage (
 			@ApiParam(value="Il token del bot") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="L'id della chat") @RequestParam(value="chat_id", required=false) String chatId,
 			@ApiParam(value="Il testo in allegato all'immagine da inviare") @RequestParam(value="text", required=false) String text,
@@ -70,7 +70,7 @@ public class TelegramController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TelegramService.TELEGRAM_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String id=(String) request.getAttribute("chat_id");
@@ -88,7 +88,7 @@ public class TelegramController {
 					+ "- video_url: l'url del video da inviare\n"
 					+ "- text: il testo in allegato al video da inviare")
 	@RequestMapping(value="/sendVideo", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<TelegramPublishResponse>> sendVideo (
+	public ResponseEntity<ErmesResponse<TelegramPublishResponse>> sendVideo (
 			@ApiParam(value="Il token del bot") @RequestParam(value="token", required=false) String token,
 			@ApiParam(value="L'id della chat") @RequestParam(value="chat_id", required=false) String chatId,
 			@ApiParam(value="L'url del video da inviare") @RequestParam(value="video_url", required=false) String videoUrl,
@@ -99,7 +99,7 @@ public class TelegramController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TelegramService.TELEGRAM_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String id=(String) request.getAttribute("chat_id");

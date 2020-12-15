@@ -9,24 +9,20 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SendPhoto;
 import com.pengrad.telegrambot.request.SendVideo;
 import com.pengrad.telegrambot.response.SendResponse;
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.telegram.TelegramPublishResponse;
-import ermes.util.SocialUtil;
+import ermes.util.ErmesUtil;
 
 @Service
 public class TelegramConnector implements TelegramService {
 	public TelegramConnector() {
-		
 	}
 
 	@Override
 	public boolean verifyBotToken() {
 		//Check if the token is valid
-		if(!SocialUtil.checkString(botToken))
-			return false;
-		
-		return true;
+		return ErmesUtil.checkString(botToken);
 	}
 	
 	@Override
@@ -42,12 +38,12 @@ public class TelegramConnector implements TelegramService {
 	}
 	
 	@Override
-	public SocialResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
+	public ErmesResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
 		//Create the response
-		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
+		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
 		
-		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(messageText))
-			return socialResponse.error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
+		if(!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(messageText))
+			return socialResponse.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -61,38 +57,37 @@ public class TelegramConnector implements TelegramService {
 		SendMessage sendMessage=new SendMessage(chatId, messageText)
 		        .parseMode(ParseMode.HTML)
 		        .disableWebPagePreview(false)
-		        .disableNotification(true); //With this the notification will be silent
-	
+				//With this the notification will be silent
+		        .disableNotification(true);
+
 		//Send message
 		SendResponse sendResponse=telegramBot.execute(sendMessage);
 		
 		//Check errors
-		if(SocialUtil.checkString(sendResponse.description()))
+		if(ErmesUtil.checkString(sendResponse.description()))
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
-		
-		return socialResponse;
 	}
 	
 	@Override
-	public SocialResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
-		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(imageUrl))
-			return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
+	public ErmesResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
+		if(!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(imageUrl))
+			return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
 		
 		try {
-			SocialUtil.saveMedia(imageUrl);	
+			ErmesUtil.saveMedia(imageUrl);
 			
 			//Get image's path
 			URL url=new URL(imageUrl);
 			String fileName=url.getFile();
 			String imageName=fileName.substring(fileName.lastIndexOf("/"));
-			String imageFilePath=SocialUtil.PATH + imageName;
+			String imageFilePath=ErmesUtil.PATH + imageName;
 			
 			return sendPhotoOnChannelOrGroup(chatId, imageFilePath, messageText);
 		} 
@@ -100,12 +95,12 @@ public class TelegramConnector implements TelegramService {
 			errorMessage=e.getMessage();
 		}
 		
-		return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage);
+		return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, errorMessage);
 	}
 	
-	private SocialResponse<TelegramPublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
+	private ErmesResponse<TelegramPublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
 		//Create the response
-		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
+		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -118,14 +113,14 @@ public class TelegramConnector implements TelegramService {
 		String imageFormat="";
 		try {
 			//Find image's format
-			imageFormat=SocialUtil.getImageFormat(imageFilePath);
+			imageFormat=ErmesUtil.getImageFormat(imageFilePath);
 		}
 		catch(RuntimeException e) {
-			return socialResponse.error(SocialResponse.CODE, e.getMessage());
+			return socialResponse.error(ErmesResponse.CODE, e.getMessage());
 		}
 		
 		//Convert image to byte array
-		byte[] imageAsBytes=SocialUtil.fetchBytesFromImage(imageFilePath, imageFormat);
+		byte[] imageAsBytes=ErmesUtil.fetchBytesFromImage(imageFilePath, imageFormat);
 		
 		//If a message was not specified, it's not necessary to send it
 		if(messageText==null)
@@ -135,38 +130,37 @@ public class TelegramConnector implements TelegramService {
 		SendPhoto sendPhoto=new SendPhoto(chatId, imageAsBytes)
 				.caption(messageText)
 				.parseMode(ParseMode.HTML)
-				.disableNotification(true); //With this the notification will be silent
+				//With this the notification will be silent
+				.disableNotification(true);
 		
 		//Send message
 		SendResponse sendResponse=telegramBot.execute(sendPhoto);
 		
 		//Check errors
-		if(SocialUtil.checkString(sendResponse.description()))
+		if(ErmesUtil.checkString(sendResponse.description()))
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
-		
-		return socialResponse;
 	}
 	
 	@Override
-	public SocialResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
-		if(!SocialUtil.checkString(chatId) || !SocialUtil.checkString(videoUrl))
-			return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, PublishResponse.FAIL_MESSAGE);
+	public ErmesResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
+		if(!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(videoUrl))
+			return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
 		
 		try {
-			SocialUtil.saveMedia(videoUrl);	
+			ErmesUtil.saveMedia(videoUrl);
 			
 			//Get image's path
 			URL url=new URL(videoUrl);
 			String fileName=url.getFile();
 			String videoName=fileName.substring(fileName.lastIndexOf("/"));
-			String videoFilePath=SocialUtil.PATH + videoName;
+			String videoFilePath=ErmesUtil.PATH + videoName;
 			
 			return sendVideoOnChannelOrGroup(chatId, videoFilePath, messageText);
 		} 
@@ -174,12 +168,12 @@ public class TelegramConnector implements TelegramService {
 			errorMessage=e.getMessage();
 		}
 		
-		return new SocialResponse<TelegramPublishResponse>().error(SocialResponse.CODE, errorMessage);
+		return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, errorMessage);
 	}
 	
-	private SocialResponse<TelegramPublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
+	private ErmesResponse<TelegramPublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
 		//Create the response
-		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
+		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -190,7 +184,7 @@ public class TelegramConnector implements TelegramService {
 		chatId=manageChatId(chatId);
 		
 		//Convert image to byte array
-		byte[] videoAsBytes=SocialUtil.fetchBytesFromVideo(videoFilePath);
+		byte[] videoAsBytes=ErmesUtil.fetchBytesFromVideo(videoFilePath);
 		
 		//If a message was not specified, it's not necessary to send it
 		if(messageText==null)
@@ -200,20 +194,19 @@ public class TelegramConnector implements TelegramService {
 		SendVideo sendVideo=new SendVideo(chatId, videoAsBytes)
 				.caption(messageText)
 				.parseMode(ParseMode.HTML)
-				.disableNotification(true); //With this the notification will be silent
+				//With this the notification will be silent
+				.disableNotification(true);
 		
 		//Send message
 		SendResponse sendResponse=telegramBot.execute(sendVideo);
 		
 		//Check errors
-		if(SocialUtil.checkString(sendResponse.description()))
+		if(ErmesUtil.checkString(sendResponse.description()))
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		socialResponse.success(SocialResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
-		
-		return socialResponse;
 	}
 	
 	@Override
@@ -231,27 +224,27 @@ public class TelegramConnector implements TelegramService {
 
 	@Override
 	public boolean isChatIdFromUrl(String chatId) {
-		return SocialUtil.contains(chatId, SocialUtil.HTTPS) || SocialUtil.contains(chatId, SocialUtil.HTTP);
+		return ErmesUtil.contains(chatId, ErmesUtil.HTTPS) || ErmesUtil.contains(chatId, ErmesUtil.HTTP);
 	}
 	
 	//Check if the id is given by a message url
 	private boolean idFromMessageUrl(String chatId) {
-		return SocialUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)
-				|| SocialUtil.contains(chatId, TelegramService.TELEGRAM_ME);
+		return ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)
+				|| ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME);
 	}
 	
 	//Build the id given a chat url in case of private chat
 	private String obtainChatId(String chatId) {		
 		//If it's a public channel or group
-		if(SocialUtil.contains(chatId, TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX)) {
+		if(ErmesUtil.contains(chatId, TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX)) {
 			return chatId.substring(chatId.lastIndexOf(TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX));
 		}
 		else { //If it's a private channel or group
 			//If it's a group
-			if(!SocialUtil.contains(chatId, "_")) {
+			if(!ErmesUtil.contains(chatId, "_")) {
 				chatId=chatId.replace(TelegramService.TELEGRAM_DOMAIN + "#/im?p=", "");
 				
-				//This is needed in order to remove the url's prefix for private groups
+				//This is needed in order to remove the url prefix for private groups
 				chatId=chatId.substring(1);
 					
 				//Add the prefix for group
@@ -261,7 +254,7 @@ public class TelegramConnector implements TelegramService {
 				//If it's a channel
 				chatId=chatId.replace(TelegramService.TELEGRAM_DOMAIN + "#/im?p=", "");
 				
-				//This is needed in order to remove the url's prefix for private channels
+				//This is needed in order to remove the url prefix for private channels
 				chatId=chatId.substring(1);
 				chatId=chatId.substring(0, chatId.lastIndexOf("_"));
 					
@@ -273,8 +266,8 @@ public class TelegramConnector implements TelegramService {
 	
 	//Build the id given a message url in case of private chat
 	private String obtainChatIdFromMessageUrl(String chatId) {
-		//If it's a private channel, this kind of methos cannot be used for private groups
-		if(SocialUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)) {
+		//If it's a private channel, this kind of method cannot be used for private groups
+		if(ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)) {
 			//Get the id
 			chatId=chatId.substring(0, chatId.lastIndexOf("/"));
 			chatId=chatId.substring(chatId.lastIndexOf("/")+1);
@@ -308,12 +301,12 @@ public class TelegramConnector implements TelegramService {
 			
 			//Get the chat's id
 			String chatId=sendResponse.message().chat().id().toString();
-			if(SocialUtil.contains(chatId, TelegramService.TELEGRAM_PRIVATE_CHANNEL_PREFIX)) {
+			if(ErmesUtil.contains(chatId, TelegramService.TELEGRAM_PRIVATE_CHANNEL_PREFIX)) {
 				//4 because the channels' prefix need to be omitted
 				chatId=chatId.substring(4);
 			}
 			else {
-				//1 because the grouos' prefix need to be omitted
+				//1 because the groups' prefix need to be omitted
 				chatId=chatId.substring(1);
 			}
 			
@@ -328,15 +321,15 @@ public class TelegramConnector implements TelegramService {
 	}
 	
 	//Return the proper error response get by Telegram
-	private SocialResponse<TelegramPublishResponse> getErrorResponse(SendResponse sendResponse){
+	private ErmesResponse<TelegramPublishResponse> getErrorResponse(SendResponse sendResponse){
 		//Create the response
-		SocialResponse<TelegramPublishResponse> socialResponse=new SocialResponse<TelegramPublishResponse>();
+		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
 
 		//Check the specific error in order to customize it
 		if(sendResponse.description().equalsIgnoreCase(TELEGRAM_BOT_NOT_FOUND))
-			return socialResponse.error(SocialResponse.CODE, "Bot " + TELEGRAM_BOT_NOT_FOUND);
+			return socialResponse.error(ErmesResponse.CODE, "Bot " + TELEGRAM_BOT_NOT_FOUND);
 		else
-			return socialResponse.error(SocialResponse.CODE, sendResponse.description());
+			return socialResponse.error(ErmesResponse.CODE, sendResponse.description());
 	}
 	
 	@Override

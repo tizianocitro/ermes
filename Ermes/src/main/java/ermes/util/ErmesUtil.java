@@ -19,7 +19,7 @@ import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class SocialUtil {
+public class ErmesUtil {
 	//Save media on specified path
 	public static void saveMedia(String mediaUrl) throws IOException {
 		URL url=new URL(mediaUrl);
@@ -120,7 +120,7 @@ public class SocialUtil {
 		}
 	}
 	
-	public static void setResponseAttribute(HttpSession session, HttpServletRequest httpRequest) {
+	public static void manageRequest(HttpSession session, HttpServletRequest httpRequest) {
 		Enumeration<String> attributeNames=session.getAttributeNames();
 		while(attributeNames.hasMoreElements()) {
 		    String attributeName=attributeNames.nextElement();
@@ -129,7 +129,7 @@ public class SocialUtil {
 		}
 	}
 	
-	public static void setResponseAttribute(HttpServletRequest httpRequest) {
+	public static void manageRequest(HttpServletRequest httpRequest) {
 		Enumeration<String> parameterNames=httpRequest.getParameterNames();
 		while(parameterNames.hasMoreElements()) {
 	          String paramName=parameterNames.nextElement();
@@ -139,19 +139,14 @@ public class SocialUtil {
 	}
 	
 	public static boolean checkString(String check) {
-		if(check==null || check.equals(""))
-			return false;
-		
-		return true;
+		return check!=null && !check.equals("");
 	}
 
 	public static boolean contains(String text, String containsText) {
 		Pattern pattern=Pattern.compile(containsText, Pattern.CASE_INSENSITIVE);
 		Matcher matcher=pattern.matcher(text);
-		if(matcher.find())
-			return true;
-		
-		return false;
+
+		return matcher.find();
 	}
 
 	//Get the url from a string
@@ -185,7 +180,9 @@ public class SocialUtil {
 	}
 	
 	//Path for saving media
-	public static final String PATH="./src/main/resources/static/media/";
+	//On Eclipse it's ./src/main/resources/static/media/
+	//And in log4j2.properties change it to appender.file.fileName=./log/ermes.log
+	public static final String PATH="Ermes/src/main/resources/static/media/";
 	
 	//Exception's message
 	public static final String READER_ERROR="Nessun ImageReader trovato, controlla la correttezza del file";

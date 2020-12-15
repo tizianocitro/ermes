@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import ermes.util.SocialUtil;
+import ermes.util.ErmesUtil;
 
 @Configuration
 public class TelegramFilter implements Filter {
@@ -28,11 +28,14 @@ public class TelegramFilter implements Filter {
 		HttpServletResponse httpResponse=(HttpServletResponse) response;
 		
 		logger.debug("Gestisco connessione");
-		
+
+		//Get the token from the request
 		String botToken=httpRequest.getParameter(TelegramService.TELEGRAM_TOKEN);
-		if(!SocialUtil.checkString(botToken)) { //Check if the token is possibly valid, at least
+
+		//Check if the token is possibly valid, at least
+		if(!ErmesUtil.checkString(botToken)) {
 			logger.debug("Token passato non valido");
-			
+
 			httpRequest.setAttribute(TelegramService.TELEGRAM_ERROR, TelegramService.TELEGRAM_NOT_VALID_BOT_TOKEN);
 		}
 		else {	
@@ -46,7 +49,7 @@ public class TelegramFilter implements Filter {
 			}
 			
 			//Pass the needed parameters to the service
-			SocialUtil.setResponseAttribute(httpRequest);			
+			ErmesUtil.manageRequest(httpRequest);
 		}
 		
 		logger.debug("Esco dal filtro");

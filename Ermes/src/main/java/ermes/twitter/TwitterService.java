@@ -1,6 +1,6 @@
 package ermes.twitter;
 
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.twitter.TwitterAuthorizationResponse;
 import twitter4j.Twitter;
@@ -23,10 +23,10 @@ public interface TwitterService {
 	
 	//Interaction
 	public User getUser();
-	public SocialResponse<TwitterAuthorizationResponse> authorization();
-	public SocialResponse<PublishResponse> postTweet(String tweetText);
-	public SocialResponse<PublishResponse> postImage(String imageUrl, String tweetText);
-	public SocialResponse<PublishResponse> postVideo(String videoUrl, String tweetText);
+	public ErmesResponse<TwitterAuthorizationResponse> authorization();
+	public ErmesResponse<PublishResponse> postTweet(String tweetText);
+	public ErmesResponse<PublishResponse> postImage(String imageUrl, String tweetText);
+	public ErmesResponse<PublishResponse> postVideo(String videoUrl, String tweetText);
 	
 	//Getter and setter
 	public Twitter getTwitter();

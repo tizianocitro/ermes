@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description="Modella la risposta per il servizio di autorizzazione.")
 public class FacebookAuthorizationResponse {
 	public FacebookAuthorizationResponse() {
-
 	}
 	
 	public FacebookAuthorizationResponse(String accessToken, String applicationKey, String applicationName, 

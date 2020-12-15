@@ -15,7 +15,7 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import ermes.util.SocialUtil;
+import ermes.util.ErmesUtil;
 import twitter4j.TwitterException;
 
 @Configuration
@@ -58,7 +58,7 @@ public class TwitterFilter implements Filter {
 								httpRequest.getParameter(TwitterService.TWITTER_USER_ID)));
 								
 				//Pass needed parameters to the service
-				SocialUtil.setResponseAttribute(httpRequest);
+				ErmesUtil.manageRequest(httpRequest);
 				
 				//Invalidate the session before leaving
 				session.invalidate();
@@ -73,7 +73,7 @@ public class TwitterFilter implements Filter {
 						httpRequest.getParameter(TwitterService.TWITTER_VERIFIER))) {
 			
 					//Store request parameters for multiple redirections
-					SocialUtil.storeParameters(session, httpRequest);
+					ErmesUtil.storeParameters(session, httpRequest);
 						
 					logger.debug("Reindirizzamento a Twitter");
 						
@@ -89,7 +89,7 @@ public class TwitterFilter implements Filter {
 					twitter.configAccessToken(verifier);
 							
 					//Pass needed parameters to the service
-					SocialUtil.setResponseAttribute(session, httpRequest);
+					ErmesUtil.manageRequest(session, httpRequest);
 											
 					//Invalidate the session before leaving
 					session.invalidate();
@@ -101,7 +101,7 @@ public class TwitterFilter implements Filter {
 			} //End check for access token presence
 		} //End try
 		catch(TwitterException | IllegalStateException | NumberFormatException e) {			
-			httpRequest.setAttribute(TwitterService.TWITTER_ERROR, SocialUtil.format(e.getMessage()));
+			httpRequest.setAttribute(TwitterService.TWITTER_ERROR, ErmesUtil.format(e.getMessage()));
 			
 			//Invalidate the session before leaving
 			session.invalidate();

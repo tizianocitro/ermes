@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.twitter.TwitterAuthorizationResponse;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +30,7 @@ public class TwitterController {
 					+ "- key: la key dell'applicazione\n"
 					+ "- secret: il secret dell'applicazione")
 	@GetMapping("/authorization")
-	public ResponseEntity<SocialResponse<TwitterAuthorizationResponse>> authorization(
+	public ResponseEntity<ErmesResponse<TwitterAuthorizationResponse>> authorization(
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			HttpServletRequest request) {
@@ -40,7 +40,7 @@ public class TwitterController {
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TwitterService.TWITTER_ERROR))!=null)
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(new SocialResponse<TwitterAuthorizationResponse>().error(SocialResponse.CODE, errorMessage));
+					.body(new ErmesResponse<TwitterAuthorizationResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		return ResponseEntity.ok(twitter.authorization());
 	}
@@ -57,7 +57,7 @@ public class TwitterController {
 					+ "- image_url: l'url dell'immagine da pubblicare\n"
 					+ "- text: il testo in allegato all'immagine da pubblicare")
 	@RequestMapping(value="/postImage", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postImage (
+	public ResponseEntity<ErmesResponse<PublishResponse>> postImage (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -71,7 +71,7 @@ public class TwitterController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TwitterService.TWITTER_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String image=(String) request.getAttribute("image_url");
@@ -91,7 +91,7 @@ public class TwitterController {
 					+ "- user_id: l'id dell'utente associato al token\n"
 					+ "- text: il testo del tweet da pubblicare")
 	@RequestMapping(value="/postTweet", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postTweet (
+	public ResponseEntity<ErmesResponse<PublishResponse>> postTweet (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -104,7 +104,7 @@ public class TwitterController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TwitterService.TWITTER_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String tweet=(String) request.getAttribute("text");
@@ -124,7 +124,7 @@ public class TwitterController {
 					+ "- video_url: l'url del video da pubblicare\n"
 					+ "- text: il testo in allegato al video da pubblicare")
 	@RequestMapping(value="/postVideo", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postVideo (
+	public ResponseEntity<ErmesResponse<PublishResponse>> postVideo (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -138,7 +138,7 @@ public class TwitterController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(TwitterService.TWITTER_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String video=(String) request.getAttribute("video_url");

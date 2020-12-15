@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ermes.response.SocialResponse;
+import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.facebook.FacebookAuthorizationResponse;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +31,7 @@ public class FacebookController {
 					+ "- secret: il secret dell'applicazione\n"
 					+ "- permissions: i permessi necessari per l'utilizzo dei servizi")
 	@GetMapping("/authorization")
-	public ResponseEntity<SocialResponse<FacebookAuthorizationResponse>> authorization(
+	public ResponseEntity<ErmesResponse<FacebookAuthorizationResponse>> authorization(
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="I permessi necessari per l'utilizzo dei servizi") @RequestParam(value="permissions", required=false) String permissions,
@@ -42,7 +42,7 @@ public class FacebookController {
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(FacebookService.FACEBOOK_ERROR))!=null)
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(new SocialResponse<FacebookAuthorizationResponse>().error(SocialResponse.CODE, errorMessage));
+					.body(new ErmesResponse<FacebookAuthorizationResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		return ResponseEntity.ok(facebook.authorization());
 	}
@@ -59,7 +59,7 @@ public class FacebookController {
 					+ "- image_url: l'url dell'immagine da pubblicare\n"
 					+ "- text: il testo in allegato all'immagine da pubblicare")
 	@RequestMapping(value="/postImage", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postImage (		
+	public ResponseEntity<ErmesResponse<PublishResponse>> postImage (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -73,7 +73,7 @@ public class FacebookController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(FacebookService.FACEBOOK_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String page=(String) request.getAttribute("page_name");
@@ -94,7 +94,7 @@ public class FacebookController {
 					+ "- page_name: il nome della pagina su cui pubblicare\n"
 					+ "- text: il testo dello status da pubblicare")
 	@RequestMapping(value="/postStatus", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postStatus (
+	public ResponseEntity<ErmesResponse<PublishResponse>> postStatus (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -107,7 +107,7 @@ public class FacebookController {
  		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(FacebookService.FACEBOOK_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String page=(String) request.getAttribute("page_name");
@@ -128,7 +128,7 @@ public class FacebookController {
 					+ "- video_url: l'url del video da pubblicare\n"
 					+ "- text: il testo in allegato al video da pubblicare")
 	@RequestMapping(value="/postVideo", method={RequestMethod.POST, RequestMethod.GET})
-	public ResponseEntity<SocialResponse<PublishResponse>> postVideo (		
+	public ResponseEntity<ErmesResponse<PublishResponse>> postVideo (
 			@ApiParam(value="La key dell'applicazione") @RequestParam(value="key", required=false) String key,
 			@ApiParam(value="Il secret dell'applicazione") @RequestParam(value="secret", required=false) String secret,
 			@ApiParam(value="Il valore associato al token") @RequestParam(value="token", required=false) String token,
@@ -142,7 +142,7 @@ public class FacebookController {
 		//Check errors
 		String errorMessage="";
 		if((errorMessage=(String) request.getAttribute(FacebookService.FACEBOOK_ERROR))!=null)
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SocialResponse<PublishResponse>().error(SocialResponse.CODE, errorMessage));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, errorMessage));
 		
 		//Get parameters from request
 		String page=(String) request.getAttribute("page_name");

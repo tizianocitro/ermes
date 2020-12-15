@@ -9,7 +9,7 @@ import ermes.facebook.FacebookService.FacebookServicePermission;
 @Configuration
 public class FacebookPermission implements FacebookServicePermission {
 	public FacebookPermission() {
-		permissions=new HashSet<ServicePermission>();
+		permissions=new HashSet<>();
 	}
 	
 	@Override
