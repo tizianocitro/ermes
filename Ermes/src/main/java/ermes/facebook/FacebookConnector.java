@@ -109,7 +109,7 @@ public class FacebookConnector implements FacebookService {
 	@Override
 	public ErmesResponse<FacebookAuthorizationResponse> authorization() {
 		//Create the response
-		ErmesResponse<FacebookAuthorizationResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<FacebookAuthorizationResponse> response=new ErmesResponse<>();
 		
 		//Get the debug token info
 		DebugTokenInfo tokenInfo=facebookClient.debugToken(accessToken.getAccessToken());
@@ -123,7 +123,7 @@ public class FacebookConnector implements FacebookService {
 		facebookAccessTokenResponse.setUserId(tokenInfo.getUserId());
 				
 		//Build the response
-		return socialResponse.success(ErmesResponse.CODE, ErmesResponse.SUCCES_MESSAGE)
+		return response.success(ErmesResponse.CODE, ErmesResponse.SUCCES_MESSAGE)
 				.setData(facebookAccessTokenResponse);
 	}
 	
@@ -148,12 +148,12 @@ public class FacebookConnector implements FacebookService {
 	@Override
 	public ErmesResponse<PublishResponse> postStatusOnPage(String pageName, String statusText) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		//Check parameters
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
 		if(!ErmesUtil.checkString(pageName) || !ErmesUtil.checkString(statusText))
-			return socialResponse.error(ErmesResponse.CODE, errorMessage);
+			return response.error(ErmesResponse.CODE, errorMessage);
 			
 		//Get the type of the status because Facebook didn't handle link by itself
 		String statusType=getStatusType(statusText);
@@ -182,7 +182,9 @@ public class FacebookConnector implements FacebookService {
 				}
 				
 				FacebookClient pageClient=new DefaultFacebookClient(pageAccessToken, Version.LATEST);
-				FacebookType facebookResponse=pageClient.publish(pageId + "/feed", FacebookType.class,
+				FacebookType facebookResponse=pageClient.publish(
+						pageId + "/feed",
+						FacebookType.class,
 						//In case it's a link show the preview of the link
 						//In case it's a simple message publish the status with message only
 						Parameter.with(statusType, statusText),
@@ -190,7 +192,7 @@ public class FacebookConnector implements FacebookService {
 						Parameter.with("message", message));
 				
 				//Build the successful response
-				return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+				return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getPostUrl(facebookResponse)));
 			}
 		}
@@ -202,7 +204,7 @@ public class FacebookConnector implements FacebookService {
 		}
 		
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, errorMessage);
+		return response.error(ErmesResponse.CODE, errorMessage);
 	}
 	
 	//Return the type of the status which is going to be published
@@ -264,7 +266,7 @@ public class FacebookConnector implements FacebookService {
 	//Publish an image on a user's page
 	private ErmesResponse<PublishResponse> postImage(String pageName, String imageFilePath, String imageName, String statusText) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
@@ -288,12 +290,14 @@ public class FacebookConnector implements FacebookService {
 	
 				//Publish the image
 				FacebookClient pageClient=new DefaultFacebookClient(pageAccessToken, Version.LATEST);
-				FacebookType facebookResponse=pageClient.publish(pageId + "/photos", FacebookType.class,
+				FacebookType facebookResponse=pageClient.publish(
+						pageId + "/photos",
+						FacebookType.class,
 						BinaryAttachment.with(imageName, imageAsBytes, "image/" + imageFormat),
 						Parameter.with("message", statusText));
 				
 				//Build the successful response
-				return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+				return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getPostUrl(facebookResponse)));
 			}
 		}
@@ -302,7 +306,7 @@ public class FacebookConnector implements FacebookService {
 		}
 		
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, errorMessage);
+		return response.error(ErmesResponse.CODE, errorMessage);
 	}
 	
 	//Publish a video on a user's page given the url
@@ -341,7 +345,7 @@ public class FacebookConnector implements FacebookService {
 	//Publish an image on a user's page
 	private ErmesResponse<PublishResponse> postVideo(String pageName, String videoFilePath, String videoName, String statusText) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		//Build error message
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
@@ -362,12 +366,14 @@ public class FacebookConnector implements FacebookService {
 	
 				//Publish the image
 				FacebookClient pageClient=new DefaultFacebookClient(pageAccessToken, Version.LATEST);
-				FacebookType facebookResponse=pageClient.publish(pageId + "/videos", FacebookType.class,
+				FacebookType facebookResponse=pageClient.publish(
+						pageId + "/videos",
+						FacebookType.class,
 						BinaryAttachment.with(videoName, videoAsBytes),
 						Parameter.with("description", statusText));
 				
 				//Build the successful response
-				return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+				return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getPostUrl(facebookResponse)));
 			}
 		}
@@ -376,7 +382,7 @@ public class FacebookConnector implements FacebookService {
 		}
 		
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, errorMessage);
+		return response.error(ErmesResponse.CODE, errorMessage);
 	}
 	
 	//Get the url of a published post
@@ -392,13 +398,10 @@ public class FacebookConnector implements FacebookService {
 	
 	//Return a page found by its name
 	private Page findPageByName(Connection<Page> pages, String pageName) {
-		for(List<Page> feedPages: pages) {
-			for(Page page: feedPages) {
-				if(page.getName().equals(pageName)) {
+		for(List<Page> feedPages: pages)
+			for (Page page : feedPages)
+				if (page.getName().equals(pageName))
 					return page;
-				}
-			}
-		}
 		
 		return null;
 	}
@@ -514,7 +517,7 @@ public class FacebookConnector implements FacebookService {
 	private FacebookClient facebookClient;
 	private AccessToken accessToken;
 	
-	//Needed to build the access token
+	//Required to build the access token
 	private static final String ACCESS_TOKEN_QUERY_STRING="access_token=";
 	
 	@Autowired

@@ -40,10 +40,10 @@ public class TelegramConnector implements TelegramService {
 	@Override
 	public ErmesResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
 		//Create the response
-		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<TelegramPublishResponse> response=new ErmesResponse<>();
 		
 		if(!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(messageText))
-			return socialResponse.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+			return response.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -68,7 +68,7 @@ public class TelegramConnector implements TelegramService {
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 	}
 	
@@ -100,7 +100,7 @@ public class TelegramConnector implements TelegramService {
 	
 	private ErmesResponse<TelegramPublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
 		//Create the response
-		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<TelegramPublishResponse> response=new ErmesResponse<>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -116,7 +116,7 @@ public class TelegramConnector implements TelegramService {
 			imageFormat=ErmesUtil.getImageFormat(imageFilePath);
 		}
 		catch(RuntimeException e) {
-			return socialResponse.error(ErmesResponse.CODE, e.getMessage());
+			return response.error(ErmesResponse.CODE, e.getMessage());
 		}
 		
 		//Convert image to byte array
@@ -141,7 +141,7 @@ public class TelegramConnector implements TelegramService {
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 	}
 	
@@ -173,7 +173,7 @@ public class TelegramConnector implements TelegramService {
 	
 	private ErmesResponse<TelegramPublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
 		//Create the response
-		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<TelegramPublishResponse> response=new ErmesResponse<>();
 		
 		//Needed to get the proper link to the message
 		boolean notPublic=false;
@@ -205,7 +205,7 @@ public class TelegramConnector implements TelegramService {
 			return getErrorResponse(sendResponse);
 		
 		//Build successful response
-		return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+		return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 			.setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
 	}
 	
@@ -323,13 +323,13 @@ public class TelegramConnector implements TelegramService {
 	//Return the proper error response get by Telegram
 	private ErmesResponse<TelegramPublishResponse> getErrorResponse(SendResponse sendResponse){
 		//Create the response
-		ErmesResponse<TelegramPublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<TelegramPublishResponse> response=new ErmesResponse<>();
 
 		//Check the specific error in order to customize it
 		if(sendResponse.description().equalsIgnoreCase(TELEGRAM_BOT_NOT_FOUND))
-			return socialResponse.error(ErmesResponse.CODE, "Bot " + TELEGRAM_BOT_NOT_FOUND);
+			return response.error(ErmesResponse.CODE, "Bot " + TELEGRAM_BOT_NOT_FOUND);
 		else
-			return socialResponse.error(ErmesResponse.CODE, sendResponse.description());
+			return response.error(ErmesResponse.CODE, sendResponse.description());
 	}
 	
 	@Override

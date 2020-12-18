@@ -128,7 +128,7 @@ public class TwitterConnector implements TwitterService {
 	@Override
 	public ErmesResponse<TwitterAuthorizationResponse> authorization() {
 		//Create the response
-		ErmesResponse<TwitterAuthorizationResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<TwitterAuthorizationResponse> response=new ErmesResponse<>();
 		
 		//Build Twitter response
 		TwitterAuthorizationResponse twitterAccessTokenResponse=new TwitterAuthorizationResponse();
@@ -146,7 +146,7 @@ public class TwitterConnector implements TwitterService {
 		twitterAccessTokenResponse.setApplicationSecret(consumerSecret);
 		
 		//Build response
-		return socialResponse.success(ErmesResponse.CODE, ErmesResponse.SUCCES_MESSAGE)
+		return response.success(ErmesResponse.CODE, ErmesResponse.SUCCES_MESSAGE)
 			.setData(twitterAccessTokenResponse);
 	}
 	
@@ -180,12 +180,12 @@ public class TwitterConnector implements TwitterService {
 	@Override
 	public ErmesResponse<PublishResponse> postTweet(String tweetText) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		//Check parameters
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
 		if(!ErmesUtil.checkString(tweetText))
-			return socialResponse.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
+			return response.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
 		
 		try {
 			//Publish the tweet
@@ -193,7 +193,7 @@ public class TwitterConnector implements TwitterService {
 			Status status=twitter.updateStatus(statusUpdate);
 			
 			//Build the successful response
-			return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+			return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getTweetUrl(status)));
 		} 
 		catch(TwitterException e) {
@@ -201,7 +201,7 @@ public class TwitterConnector implements TwitterService {
 		}
 		
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
+		return response.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
 	}
 	
 	//Get the url of a published tweet
@@ -245,7 +245,7 @@ public class TwitterConnector implements TwitterService {
 	
 	private ErmesResponse<PublishResponse> postImageByUrl(String tweetText, String imageName) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		String imageFilePath=ErmesUtil.PATH + imageName;
 		
@@ -261,7 +261,7 @@ public class TwitterConnector implements TwitterService {
 			Status status=twitter.updateStatus(statusUpdate);
 			
 			//Build the successful response
-			return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+			return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getImageTweetUrl(status)));
 		} 
 		catch(TwitterException e) {
@@ -269,7 +269,7 @@ public class TwitterConnector implements TwitterService {
 		}
 		
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
+		return response.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
 	}
 	
 	//Publish an image
@@ -304,7 +304,7 @@ public class TwitterConnector implements TwitterService {
 	
 	private ErmesResponse<PublishResponse> postVideoByUrl(String tweetText, String videoName) {
 		//Create the response
-		ErmesResponse<PublishResponse> socialResponse=new ErmesResponse<>();
+		ErmesResponse<PublishResponse> response=new ErmesResponse<>();
 		
 		String videoFilePath=ErmesUtil.PATH + videoName;
 		String errorMessage=PublishResponse.FAIL_MESSAGE;
@@ -321,7 +321,7 @@ public class TwitterConnector implements TwitterService {
 			Status status=twitter.updateStatus(statusUpdate);
 			
 			//Build the successful response
-			return socialResponse.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
+			return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
 					.setData(new PublishResponse(getImageTweetUrl(status)));
 		} 
 		catch(TwitterException | FileNotFoundException e) {
@@ -329,7 +329,7 @@ public class TwitterConnector implements TwitterService {
 		}
 
 		//Build the error response
-		return socialResponse.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
+		return response.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
 	}
 	
 	//Get the url of a published tweet with an image

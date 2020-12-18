@@ -54,12 +54,10 @@ public class FacebookPermission implements FacebookServicePermission {
 		if(permission==null)
 			return false;
 		
-		for(ServicePermission perm: permissions) {
-			if(perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString())) {
+		for(ServicePermission perm: permissions)
+			if(perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString()))
 				if(perm.getStatus().equalsIgnoreCase(ServicePermission.DECLINED))
 					return false;
-			}
-		}
 		
 		return true;
 	}
@@ -69,11 +67,9 @@ public class FacebookPermission implements FacebookServicePermission {
 		if(permission==null) 
 			return false;
 		
-		for(ServicePermission perm: permissions) {
-			if(perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString())) {
+		for(ServicePermission perm: permissions)
+			if(perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString()))
 				return true;
-			}
-		}
 		
 		return false;
 	}
