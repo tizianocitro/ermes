@@ -326,7 +326,7 @@ public class FacebookConnector implements FacebookService {
 		try {
 			ErmesUtil.saveMedia(videoUrl);
 			
-			//Get image's path and name
+			//Get video's path and name
 			URL url=new URL(videoUrl);
 			String fileName=url.getFile();
 			String videoName=fileName.substring(fileName.lastIndexOf("/")+1);
@@ -335,7 +335,7 @@ public class FacebookConnector implements FacebookService {
 			return postVideo(pageName, videoFilePath, videoName, statusText);
 		} 
 		catch(IOException e) {
-			//Throw in case of issue with the image (File not found, No protocol...)
+			//Throw in case of issue with the video (File not found, No protocol...)
 			errorMessage=e.getMessage();
 		}
 		
@@ -354,7 +354,7 @@ public class FacebookConnector implements FacebookService {
 			//Get user's pages
 			Connection<Page> result=getPages();
 			
-			//Convert image to byte array
+			//Convert video to byte array
 			byte[] videoAsBytes=ErmesUtil.fetchBytesFromVideo(videoFilePath);
 			
 			//Find the page by the given name in order to get the id and the access token of the needed page
@@ -364,7 +364,7 @@ public class FacebookConnector implements FacebookService {
 				String pageAccessToken=page.getAccessToken();
 				String pageId=page.getId();
 	
-				//Publish the image
+				//Publish the video
 				FacebookClient pageClient=new DefaultFacebookClient(pageAccessToken, Version.LATEST);
 				FacebookType facebookResponse=pageClient.publish(
 						pageId + "/videos",

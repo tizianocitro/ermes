@@ -262,7 +262,7 @@ public class TwitterConnector implements TwitterService {
 			
 			//Build the successful response
 			return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
-					.setData(new PublishResponse(getImageTweetUrl(status)));
+					.setData(new PublishResponse(getMediaTweetUrl(status)));
 		} 
 		catch(TwitterException e) {
 			errorMessage=e.getMessage();
@@ -322,7 +322,7 @@ public class TwitterConnector implements TwitterService {
 			
 			//Build the successful response
 			return response.success(ErmesResponse.CODE, PublishResponse.SUCCES_MESSAGE)
-					.setData(new PublishResponse(getImageTweetUrl(status)));
+					.setData(new PublishResponse(getMediaTweetUrl(status)));
 		} 
 		catch(TwitterException | FileNotFoundException e) {
 			errorMessage=e.getMessage();
@@ -332,8 +332,8 @@ public class TwitterConnector implements TwitterService {
 		return response.error(ErmesResponse.CODE, ErmesUtil.format(errorMessage));
 	}
 	
-	//Get the url of a published tweet with an image
-	private String getImageTweetUrl(Status status) {
+	//Get the url of a published tweet with an image or video
+	private String getMediaTweetUrl(Status status) {
 		return status.getText().substring(status.getText().lastIndexOf(" ")+1);
 	}
 	

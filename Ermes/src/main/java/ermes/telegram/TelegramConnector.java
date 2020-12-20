@@ -156,7 +156,7 @@ public class TelegramConnector implements TelegramService {
 		try {
 			ErmesUtil.saveMedia(videoUrl);
 			
-			//Get image's path
+			//Get video's path
 			URL url=new URL(videoUrl);
 			String fileName=url.getFile();
 			String videoName=fileName.substring(fileName.lastIndexOf("/"));
@@ -183,7 +183,7 @@ public class TelegramConnector implements TelegramService {
 		//Check if the chat is private
 		chatId=manageChatId(chatId);
 		
-		//Convert image to byte array
+		//Convert video to byte array
 		byte[] videoAsBytes=ErmesUtil.fetchBytesFromVideo(videoFilePath);
 		
 		//If a message was not specified, it's not necessary to send it
