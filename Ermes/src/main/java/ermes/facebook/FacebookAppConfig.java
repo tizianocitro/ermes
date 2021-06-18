@@ -6,9 +6,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FacebookAppConfig {
+
 	@Bean
 	public FilterRegistrationBean<FacebookFilter> facebookFilterRegistrationBean(FacebookFilter facebookFilter) {
-		FilterRegistrationBean<FacebookFilter> registrationBean=new FilterRegistrationBean<>();
+		FilterRegistrationBean<FacebookFilter> registrationBean = new FilterRegistrationBean<>();
 		registrationBean.setFilter(facebookFilter);
 		registrationBean.addUrlPatterns(FacebookFilter.FACEBOOK_FILTER);
 		

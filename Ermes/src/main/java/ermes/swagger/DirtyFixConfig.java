@@ -3,6 +3,7 @@ package ermes.swagger;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,23 +19,23 @@ import springfox.documentation.spi.service.OperationBuilderPlugin;
 import springfox.documentation.spi.service.contexts.OperationContext;
 
 @Configuration
-@ConditionalOnProperty(name="dirty.fix.enabled", havingValue="true")
+@ConditionalOnProperty(name = "dirty.fix.enabled", havingValue = "true")
 public class DirtyFixConfig {
-	
-	/**
+
+    /**
      * Because of the new Actuator implementation in Spring Boot 2, all actuator endpoints are now dynamically mapped
      * to a single handler method: {\@link org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle(javax.servlet.http.HttpServletRequest, java.util.Map)}
-     *
+     * <p>
      * This causes 2 issues:
      * - Because the handler method has an @RequestBody annotated 'body' parameter, this parameter appears in all actuator
-     *   endpoints as body parameter, even for GET and HEAD requests (which cannot have a request body). These endpoints
-     *   cannot be executed from the Swagger UI page.
+     * endpoints as body parameter, even for GET and HEAD requests (which cannot have a request body). These endpoints
+     * cannot be executed from the Swagger UI page.
      * - If an Actuator endpoint contains path parameters, these are not available as input fields on the Swagger UI page,
-     *   because no @PathParam annotated arguments are present on the handler method.
-     *
+     * because no @PathParam annotated arguments are present on the handler method.
+     * <p>
      * The Swagger OperationBuilderPlugin below fixes these issues in a somewhat dirty, but effective way.
      */
-	
+
     @Bean
     public OperationBuilderPlugin operationBuilderPluginForCorrectingActuatorEndpoints(final TypeResolver typeResolver) {
         return new OperationBuilderPluginForCorrectingActuatorEndpoints(typeResolver);
@@ -45,7 +46,7 @@ public class DirtyFixConfig {
         private final TypeResolver typeResolver;
 
         OperationBuilderPluginForCorrectingActuatorEndpoints(final TypeResolver typeResolver) {
-            this.typeResolver=typeResolver;
+            this.typeResolver = typeResolver;
         }
 
         @Override
@@ -61,15 +62,15 @@ public class DirtyFixConfig {
 
         private void removeBodyParametersForReadMethods(final OperationContext context) {
             if (HttpMethod.GET.equals(context.httpMethod()) || HttpMethod.HEAD.equals(context.httpMethod())) {
-                final List<Parameter> parameters=getParameters(context);
+                final List<Parameter> parameters = getParameters(context);
                 parameters.removeIf(param -> "body".equals(param.getName()));
             }
         }
 
         private void addOperationParametersForPathParams(final OperationContext context) {
-            final UriTemplate uriTemplate=new UriTemplate(context.requestMappingPattern());
+            final UriTemplate uriTemplate = new UriTemplate(context.requestMappingPattern());
 
-            final List<Parameter> pathParams=uriTemplate.getVariableNames().stream()
+            final List<Parameter> pathParams = uriTemplate.getVariableNames().stream()
                     .map(this::createPathParameter)
                     .collect(Collectors.toList());
 
@@ -89,9 +90,9 @@ public class DirtyFixConfig {
 
         @SuppressWarnings("unchecked")
         private List<Parameter> getParameters(final OperationContext context) {
-            final OperationBuilder operationBuilder=context.operationBuilder();
+            final OperationBuilder operationBuilder = context.operationBuilder();
             try {
-                Field paramField=OperationBuilder.class.getDeclaredField("parameters");
+                Field paramField = OperationBuilder.class.getDeclaredField("parameters");
                 paramField.setAccessible(true);
                 return (List<Parameter>) paramField.get(operationBuilder);
             } catch (NoSuchFieldException | IllegalAccessException e) {

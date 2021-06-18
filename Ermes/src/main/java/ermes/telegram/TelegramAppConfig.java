@@ -6,9 +6,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TelegramAppConfig {
+
 	@Bean
 	public FilterRegistrationBean<TelegramFilter> telegramFilterRegistrationBean(TelegramFilter telegramFilter) {
-		FilterRegistrationBean<TelegramFilter> registrationBean=new FilterRegistrationBean<>();
+		FilterRegistrationBean<TelegramFilter> registrationBean = new FilterRegistrationBean<>();
 		registrationBean.setFilter(telegramFilter);
 		registrationBean.addUrlPatterns(TelegramFilter.TELEGRAM_FILTER);
 		
