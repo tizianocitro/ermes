@@ -85,7 +85,7 @@ public class FacebookFilter implements Filter {
 				//If authentication is needed
 				if(!facebook.verifyCode(httpRequest.getParameter(FacebookService.FACEBOOK_CODE))) {
 					//Check the error in case of access denied
-					String accessDenied=httpRequest.getParameter(TwitterService.TWITTER_ERROR);
+					String accessDenied=httpRequest.getParameter(FacebookService.FACEBOOK_ERROR);
 					if(facebook.verifyPermissionsDenied(accessDenied)) {
 						logger.debug("Permessi rifiutati");
 
