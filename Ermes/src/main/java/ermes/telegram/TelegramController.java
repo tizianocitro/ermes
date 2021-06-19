@@ -1,9 +1,10 @@
 package ermes.telegram;
 
-import javax.servlet.http.HttpServletRequest;
-
-import ermes.response.data.PublishResponse;
+import ermes.response.ErmesResponse;
+import ermes.response.data.telegram.TelegramPublishResponse;
 import ermes.util.AuthUtils;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ermes.response.ErmesResponse;
-import ermes.response.data.telegram.TelegramPublishResponse;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @CrossOrigin
 @RestController

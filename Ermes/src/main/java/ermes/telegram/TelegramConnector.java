@@ -49,9 +49,7 @@ public class TelegramConnector implements TelegramService {
             return response.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
         // Needed to get the proper link to the message
-        boolean notPublic = false;
-        if (isChatIdFromUrl(chatId))
-            notPublic = true;
+        boolean notPublic = isChatIdFromUrl(chatId);
 
         // Check if the chat is private
         chatId = manageChatId(chatId);
@@ -103,9 +101,7 @@ public class TelegramConnector implements TelegramService {
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Needed to get the proper link to the message
-        boolean notPublic = false;
-        if (isChatIdFromUrl(chatId))
-            notPublic = true;
+        boolean notPublic = isChatIdFromUrl(chatId);
 
         // Check if the chat is private
         chatId = manageChatId(chatId);
@@ -172,9 +168,7 @@ public class TelegramConnector implements TelegramService {
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Needed to get the proper link to the message
-        boolean notPublic = false;
-        if (isChatIdFromUrl(chatId))
-            notPublic = true;
+        boolean notPublic = isChatIdFromUrl(chatId);
 
         // Check if the chat is private
         chatId = manageChatId(chatId);
