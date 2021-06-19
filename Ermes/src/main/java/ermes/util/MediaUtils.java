@@ -107,6 +107,5 @@ public class MediaUtils {
     */
     public static final String PATH = "Ermes/src/main/resources/static/media/";
 
-    // Exception's message
-    public static final String READER_ERROR = "Nessun ImageReader trovato, controlla la correttezza del file";
+    public static final String READER_ERROR = "Nessun ImageReader trovato, controllare la correttezza del file";
 }

@@ -1,6 +1,6 @@
 package ermes.util;
 
-import ermes.twitter.TwitterService;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,15 +8,18 @@ import java.util.Enumeration;
 
 public class AuthUtils {
 
+    /*
+    * Returns the error message if an error occurred while authenticating,
+    * otherwise it returns null to signal that there wasn't any error.
+    */
     public static String isAuthOrErrorMessage(HttpServletRequest request) {
-        String errorMessage = "";
-        if ((errorMessage = (String) request.getAttribute(TwitterService.TWITTER_ERROR)) != null)
-            return errorMessage;
+        String authErrorMessage = (String) request.getAttribute(AUTH_ERROR);
+        if (StringUtils.isNotEmpty(authErrorMessage))
+            return authErrorMessage;
 
         return null;
     }
 
-    // Store parameters in session
     public static void storeParameters(HttpSession session, HttpServletRequest httpRequest) {
         Enumeration<String> parametersNames = httpRequest.getParameterNames();
         while (parametersNames.hasMoreElements()) {
@@ -43,4 +46,6 @@ public class AuthUtils {
             httpRequest.setAttribute(paramName, httpRequest.getParameter(paramName));
         }
     }
+
+    public static final String AUTH_ERROR = "error";
 }

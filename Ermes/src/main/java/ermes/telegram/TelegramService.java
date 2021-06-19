@@ -46,6 +46,5 @@ public interface TelegramService {
     public static final String TELEGRAM_TOKEN = "token";
     public static final String TELEGRAM_ERROR = "error";
 
-    // Custom error
     public static final String TELEGRAM_NOT_VALID_BOT_TOKEN = "The parameter 'token' cannot be null or an empty string";
 }

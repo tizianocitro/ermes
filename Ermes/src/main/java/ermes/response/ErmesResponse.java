@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
-@ApiModel(description = "Modella la risposta per i servizi di integrazione con Social Networks.")
+@ApiModel(description = "Modella la risposta per i servizi di integrazione con i Social Networks.")
 public class ErmesResponse<T> implements Serializable {
 
     public ErmesResponse() {

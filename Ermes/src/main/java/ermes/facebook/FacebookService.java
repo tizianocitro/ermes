@@ -75,6 +75,7 @@ public interface FacebookService {
 
     // Inner interface
     public interface FacebookServicePermission {
+
         // Permissions management
         public FacebookServicePermission createPermissions();
 
@@ -99,6 +100,7 @@ public interface FacebookService {
 
         // Inner interface
         public interface ServicePermission {
+
             // Getter and setter
             public FacebookPermissions getPermission();
 
@@ -122,7 +124,7 @@ public interface FacebookService {
     public static final String FACEBOOK_PERMISSIONS = "permissions";
     public static final String FACEBOOK_ACCESS_TOKEN = "token";
 
-    //Status types
+    // Status types
     public static final String FACEBOOK_STATUS_MESSAGE = "message";
     public static final String FACEBOOK_STATUS_LINK = "link";
 
