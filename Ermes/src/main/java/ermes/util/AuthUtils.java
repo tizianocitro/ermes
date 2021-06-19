@@ -30,20 +30,20 @@ public class AuthUtils {
     }
 
     public static void retrieveStoredParameters(HttpSession session, HttpServletRequest httpRequest) {
-        Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            String attributeName = attributeNames.nextElement();
+        Enumeration<String> attributesNames = session.getAttributeNames();
+        while (attributesNames.hasMoreElements()) {
+            String attributeName = attributesNames.nextElement();
 
             httpRequest.setAttribute(attributeName, session.getAttribute(attributeName));
         }
     }
 
     public static void passParametersToService(HttpServletRequest httpRequest) {
-        Enumeration<String> parameterNames = httpRequest.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
+        Enumeration<String> parametersNames = httpRequest.getParameterNames();
+        while (parametersNames.hasMoreElements()) {
+            String parameterName = parametersNames.nextElement();
 
-            httpRequest.setAttribute(paramName, httpRequest.getParameter(paramName));
+            httpRequest.setAttribute(parameterName, httpRequest.getParameter(parameterName));
         }
     }
 

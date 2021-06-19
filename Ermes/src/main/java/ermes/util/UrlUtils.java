@@ -13,7 +13,7 @@ public class UrlUtils {
     }
 
     // Get the url from a string
-    public static String getUrlByContainedSubstring(String text, String containsText) {
+    public static String getUrlAsContainedSubstring(String text, String containsText) {
         Pattern pattern = Pattern.compile(containsText, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {

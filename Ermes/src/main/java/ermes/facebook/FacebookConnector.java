@@ -221,12 +221,12 @@ public class FacebookConnector implements FacebookService {
     // Get the url from a status' text
     private String getUrlToPublish(String statusText) {
         // Get the https url
-        String url = UrlUtils.getUrlByContainedSubstring(statusText, UrlUtils.HTTPS);
+        String url = UrlUtils.getUrlAsContainedSubstring(statusText, UrlUtils.HTTPS);
         if (StringUtils.isNotEmpty(url))
             return url;
 
         // Get the http url if it is not https
-        url = UrlUtils.getUrlByContainedSubstring(statusText, UrlUtils.HTTP);
+        url = UrlUtils.getUrlAsContainedSubstring(statusText, UrlUtils.HTTP);
         if (StringUtils.isNotEmpty(url))
             return url;
 
