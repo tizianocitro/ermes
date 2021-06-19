@@ -3,6 +3,8 @@ package ermes.telegram;
 import java.io.IOException;
 import java.net.URL;
 
+import ermes.util.UrlUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.request.ParseMode;
@@ -13,7 +15,7 @@ import com.pengrad.telegrambot.response.SendResponse;
 import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.telegram.TelegramPublishResponse;
-import ermes.util.ErmesUtil;
+import ermes.util.MediaUtils;
 
 @Service
 public class TelegramConnector implements TelegramService {
@@ -24,7 +26,7 @@ public class TelegramConnector implements TelegramService {
     @Override
     public boolean verifyBotToken() {
         // Check if the token is valid
-        return ErmesUtil.checkString(botToken);
+        return StringUtils.isNotEmpty(botToken);
     }
 
     @Override
@@ -41,13 +43,12 @@ public class TelegramConnector implements TelegramService {
 
     @Override
     public ErmesResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
-        // Create the response
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
-        if (!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(messageText))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(messageText))
             return response.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
-        //Needed to get the proper link to the message
+        // Needed to get the proper link to the message
         boolean notPublic = false;
         if (isChatIdFromUrl(chatId))
             notPublic = true;
@@ -66,7 +67,7 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendMessage);
 
         // Check errors
-        if (ErmesUtil.checkString(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description()))
             return getErrorResponse(sendResponse);
 
         // Build successful response
@@ -77,19 +78,18 @@ public class TelegramConnector implements TelegramService {
 
     @Override
     public ErmesResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
-        if (!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(imageUrl))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(imageUrl))
             return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
-            ErmesUtil.saveMedia(imageUrl);
+            MediaUtils.saveMedia(imageUrl);
 
             // Get image's path
             URL url = new URL(imageUrl);
             String fileName = url.getFile();
             String imageName = fileName.substring(fileName.lastIndexOf("/"));
-            String imageFilePath = ErmesUtil.PATH + imageName;
+            String imageFilePath = MediaUtils.PATH + imageName;
 
             return sendPhotoOnChannelOrGroup(chatId, imageFilePath, messageText);
         } catch (IOException e) {
@@ -100,7 +100,6 @@ public class TelegramConnector implements TelegramService {
     }
 
     private ErmesResponse<TelegramPublishResponse> sendPhotoOnChannelOrGroup(String chatId, String imageFilePath, String messageText) {
-        // Create the response
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Needed to get the proper link to the message
@@ -114,13 +113,13 @@ public class TelegramConnector implements TelegramService {
         String imageFormat = "";
         try {
             // Find image's format
-            imageFormat = ErmesUtil.getImageFormat(imageFilePath);
+            imageFormat = MediaUtils.getImageFormat(imageFilePath);
         } catch (RuntimeException e) {
             return response.error(ErmesResponse.CODE, e.getMessage());
         }
 
         // Convert image to byte array
-        byte[] imageAsBytes = ErmesUtil.fetchBytesFromImage(imageFilePath, imageFormat);
+        byte[] imageAsBytes = MediaUtils.fetchBytesFromImage(imageFilePath, imageFormat);
 
         // If a message was not specified, it's not necessary to send it
         if (messageText == null)
@@ -137,7 +136,7 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendPhoto);
 
         // Check errors
-        if (ErmesUtil.checkString(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description()))
             return getErrorResponse(sendResponse);
 
         // Build successful response
@@ -148,19 +147,18 @@ public class TelegramConnector implements TelegramService {
 
     @Override
     public ErmesResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
-        if (!ErmesUtil.checkString(chatId) || !ErmesUtil.checkString(videoUrl))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(videoUrl))
             return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
-            ErmesUtil.saveMedia(videoUrl);
+            MediaUtils.saveMedia(videoUrl);
 
             // Get video's path
             URL url = new URL(videoUrl);
             String fileName = url.getFile();
             String videoName = fileName.substring(fileName.lastIndexOf("/"));
-            String videoFilePath = ErmesUtil.PATH + videoName;
+            String videoFilePath = MediaUtils.PATH + videoName;
 
             return sendVideoOnChannelOrGroup(chatId, videoFilePath, messageText);
         } catch (IOException e) {
@@ -171,7 +169,6 @@ public class TelegramConnector implements TelegramService {
     }
 
     private ErmesResponse<TelegramPublishResponse> sendVideoOnChannelOrGroup(String chatId, String videoFilePath, String messageText) {
-        // Create the response
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Needed to get the proper link to the message
@@ -183,7 +180,7 @@ public class TelegramConnector implements TelegramService {
         chatId = manageChatId(chatId);
 
         // Convert video to byte array
-        byte[] videoAsBytes = ErmesUtil.fetchBytesFromVideo(videoFilePath);
+        byte[] videoAsBytes = MediaUtils.fetchBytesFromVideo(videoFilePath);
 
         // If a message was not specified, it's not necessary to send it
         if (messageText == null)
@@ -200,7 +197,7 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendVideo);
 
         // Check errors
-        if (ErmesUtil.checkString(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description()))
             return getErrorResponse(sendResponse);
 
         // Build successful response
@@ -224,26 +221,26 @@ public class TelegramConnector implements TelegramService {
 
     @Override
     public boolean isChatIdFromUrl(String chatId) {
-        return ErmesUtil.contains(chatId, ErmesUtil.HTTPS) || ErmesUtil.contains(chatId, ErmesUtil.HTTP);
+        return UrlUtils.contains(chatId, UrlUtils.HTTPS) || UrlUtils.contains(chatId, UrlUtils.HTTP);
     }
 
     // Check if the id is given by a message url
     private boolean idFromMessageUrl(String chatId) {
-        return ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)
-                || ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME);
+        return UrlUtils.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)
+                || UrlUtils.contains(chatId, TelegramService.TELEGRAM_ME);
     }
 
     // Build the id given a chat url in case of private chat
     private String obtainChatId(String chatId) {
         // If it's a public channel or group
-        if (ErmesUtil.contains(chatId, TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX)) {
+        if (UrlUtils.contains(chatId, TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX)) {
             return chatId.substring(chatId.lastIndexOf(TelegramService.TELEGRAM_PUBLIC_CHANNEL_AND_GROUP_PREFIX));
         } else { // If it's a private channel or group
             // If it's a group
-            if (!ErmesUtil.contains(chatId, "_")) {
+            if (!UrlUtils.contains(chatId, "_")) {
                 chatId = chatId.replace(TelegramService.TELEGRAM_DOMAIN + "#/im?p=", "");
 
-                // This is needed in order to remove the url prefix for private groups
+                // Needed in order to remove the url prefix for private groups
                 chatId = chatId.substring(1);
 
                 // Add the prefix for group
@@ -265,7 +262,7 @@ public class TelegramConnector implements TelegramService {
     // Build the id given a message url in case of private chat
     private String obtainChatIdFromMessageUrl(String chatId) {
         // If it's a private channel, this kind of method cannot be used for private groups
-        if (ErmesUtil.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)) {
+        if (UrlUtils.contains(chatId, TelegramService.TELEGRAM_ME_PRIVATE)) {
             // Get the id
             chatId = chatId.substring(0, chatId.lastIndexOf("/"));
             chatId = chatId.substring(chatId.lastIndexOf("/") + 1);
@@ -298,7 +295,7 @@ public class TelegramConnector implements TelegramService {
 
             // Get the chat's id
             String chatId = sendResponse.message().chat().id().toString();
-            if (ErmesUtil.contains(chatId, TelegramService.TELEGRAM_PRIVATE_CHANNEL_PREFIX)) {
+            if (UrlUtils.contains(chatId, TelegramService.TELEGRAM_PRIVATE_CHANNEL_PREFIX)) {
                 // 4 because the channels' prefix need to be omitted
                 chatId = chatId.substring(4);
             } else {
@@ -318,7 +315,6 @@ public class TelegramConnector implements TelegramService {
 
     // Return the proper error response get by Telegram
     private ErmesResponse<TelegramPublishResponse> getErrorResponse(SendResponse sendResponse) {
-        // Create the response
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Check the specific error in order to customize it

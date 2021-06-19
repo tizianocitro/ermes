@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ermes.util.UrlUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.restfb.BinaryAttachment;
@@ -29,7 +31,7 @@ import ermes.facebook.FacebookService.FacebookServicePermission.ServicePermissio
 import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.facebook.FacebookAuthorizationResponse;
-import ermes.util.ErmesUtil;
+import ermes.util.MediaUtils;
 
 @Service
 public class FacebookConnector implements FacebookService {
@@ -88,7 +90,7 @@ public class FacebookConnector implements FacebookService {
 
     @Override
     public boolean isTokenGiven(String token) {
-        return ErmesUtil.checkString(token);
+        return StringUtils.isNotEmpty(token);
     }
 
     @Override
@@ -101,17 +103,16 @@ public class FacebookConnector implements FacebookService {
 
     @Override
     public boolean verifyCode(String code) {
-        return ErmesUtil.checkString(code);
+        return StringUtils.isNotEmpty(code);
     }
 
     @Override
     public boolean verifyPermissionsDenied(String denied) {
-        return ErmesUtil.checkString(denied);
+        return StringUtils.isNotEmpty(denied);
     }
 
     @Override
     public ErmesResponse<FacebookAuthorizationResponse> authorization() {
-        // Create the response
         ErmesResponse<FacebookAuthorizationResponse> response = new ErmesResponse<>();
 
         // Get the debug token info
@@ -151,12 +152,11 @@ public class FacebookConnector implements FacebookService {
     // Publish a status on a user's page
     @Override
     public ErmesResponse<PublishResponse> postStatusOnPage(String pageName, String statusText) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
-        // Check parameters
+        // Check input parameters
         String errorMessage = PublishResponse.FAIL_MESSAGE;
-        if (!ErmesUtil.checkString(pageName) || !ErmesUtil.checkString(statusText))
+        if (StringUtils.isEmpty(pageName) || StringUtils.isEmpty(statusText))
             return response.error(ErmesResponse.CODE, errorMessage);
 
         // Get the type of the status because Facebook didn't handle link by itself
@@ -212,7 +212,7 @@ public class FacebookConnector implements FacebookService {
 
     // Return the type of the status which is going to be published
     private String getStatusType(String statusText) {
-        if (ErmesUtil.contains(statusText, ErmesUtil.HTTPS) || ErmesUtil.contains(statusText, ErmesUtil.HTTP))
+        if (UrlUtils.contains(statusText, UrlUtils.HTTPS) || UrlUtils.contains(statusText, UrlUtils.HTTP))
             return FacebookService.FACEBOOK_STATUS_LINK;
 
         return FacebookService.FACEBOOK_STATUS_MESSAGE;
@@ -221,13 +221,13 @@ public class FacebookConnector implements FacebookService {
     // Get the url from a status' text
     private String getUrlToPublish(String statusText) {
         // Get the https url
-        String url = ErmesUtil.getSubstring(statusText, ErmesUtil.HTTPS);
-        if (ErmesUtil.checkString(url))
+        String url = UrlUtils.getUrlByContainedSubstring(statusText, UrlUtils.HTTPS);
+        if (StringUtils.isNotEmpty(url))
             return url;
 
-        // Get the http url, eventually
-        url = ErmesUtil.getSubstring(statusText, ErmesUtil.HTTP);
-        if (ErmesUtil.checkString(url))
+        // Get the http url if it is not https
+        url = UrlUtils.getUrlByContainedSubstring(statusText, UrlUtils.HTTP);
+        if (StringUtils.isNotEmpty(url))
             return url;
 
         return "";
@@ -236,24 +236,23 @@ public class FacebookConnector implements FacebookService {
     // Publish an image on a user's page given the url
     @Override
     public ErmesResponse<PublishResponse> postImageOnPage(String pageName, String imageUrl, String statusText) {
-        // Check parameters
-        if (!ErmesUtil.checkString(imageUrl) || !ErmesUtil.checkString(pageName))
+        // Check input parameters
+        if (StringUtils.isEmpty(imageUrl) || StringUtils.isEmpty(pageName))
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
         // The message is not needed if it is not specified
         if (statusText == null)
             statusText = "";
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
-            ErmesUtil.saveMedia(imageUrl);
+            MediaUtils.saveMedia(imageUrl);
 
             // Get image's path and name
             URL url = new URL(imageUrl);
             String fileName = url.getFile();
             String imageName = fileName.substring(fileName.lastIndexOf("/") + 1);
-            String imageFilePath = ErmesUtil.PATH + imageName;
+            String imageFilePath = MediaUtils.PATH + imageName;
 
             return postImage(pageName, imageFilePath, imageName, statusText);
         } catch (IOException e) {
@@ -266,20 +265,18 @@ public class FacebookConnector implements FacebookService {
 
     // Publish an image on a user's page
     private ErmesResponse<PublishResponse> postImage(String pageName, String imageFilePath, String imageName, String statusText) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             // Get user's pages
             Connection<Page> result = getPages();
 
             // Find image's format
-            String imageFormat = ErmesUtil.getImageFormat(imageFilePath);
+            String imageFormat = MediaUtils.getImageFormat(imageFilePath);
 
             // Convert image to byte array
-            byte[] imageAsBytes = ErmesUtil.fetchBytesFromImage(imageFilePath, imageFormat);
+            byte[] imageAsBytes = MediaUtils.fetchBytesFromImage(imageFilePath, imageFormat);
 
             // Find the page by the given name in order to get the id and the access token of the needed page
             Page page = findPageByName(result, pageName);
@@ -312,24 +309,23 @@ public class FacebookConnector implements FacebookService {
     // Publish a video on a user's page given the url
     @Override
     public ErmesResponse<PublishResponse> postVideoOnPage(String pageName, String videoUrl, String statusText) {
-        // Check parameters
-        if (!ErmesUtil.checkString(videoUrl) || !ErmesUtil.checkString(pageName))
+        // Check input parameters
+        if (StringUtils.isEmpty(videoUrl) || StringUtils.isEmpty(pageName))
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
         // The message is not needed if it is not specified
         if (statusText == null)
             statusText = "";
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
-            ErmesUtil.saveMedia(videoUrl);
+            MediaUtils.saveMedia(videoUrl);
 
             // Get video's path and name
             URL url = new URL(videoUrl);
             String fileName = url.getFile();
             String videoName = fileName.substring(fileName.lastIndexOf("/") + 1);
-            String videoFilePath = ErmesUtil.PATH + videoName;
+            String videoFilePath = MediaUtils.PATH + videoName;
 
             return postVideo(pageName, videoFilePath, videoName, statusText);
         } catch (IOException e) {
@@ -342,18 +338,15 @@ public class FacebookConnector implements FacebookService {
 
     // Publish an image on a user's page
     private ErmesResponse<PublishResponse> postVideo(String pageName, String videoFilePath, String videoName, String statusText) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
-
         try {
             // Get user's pages
             Connection<Page> result = getPages();
 
             // Convert video to byte array
-            byte[] videoAsBytes = ErmesUtil.fetchBytesFromVideo(videoFilePath);
+            byte[] videoAsBytes = MediaUtils.fetchBytesFromVideo(videoFilePath);
 
             // Find the page by the given name in order to get the id and the access token of the needed page
             Page page = findPageByName(result, pageName);

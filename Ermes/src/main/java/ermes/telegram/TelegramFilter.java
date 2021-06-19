@@ -9,11 +9,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ermes.util.AuthUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import ermes.util.ErmesUtil;
+import ermes.util.MediaUtils;
 
 @Configuration
 public class TelegramFilter implements Filter {
@@ -35,7 +37,7 @@ public class TelegramFilter implements Filter {
         String botToken = httpRequest.getParameter(TelegramService.TELEGRAM_TOKEN);
 
         // Check if the token is possibly valid, at least
-        if (!ErmesUtil.checkString(botToken)) {
+        if (StringUtils.isEmpty(botToken)) {
             logger.debug("Token passato non valido");
 
             httpRequest.setAttribute(TelegramService.TELEGRAM_ERROR, TelegramService.TELEGRAM_NOT_VALID_BOT_TOKEN);
@@ -50,7 +52,7 @@ public class TelegramFilter implements Filter {
             }
 
             // Pass the needed parameters to the service
-            ErmesUtil.manageRequest(httpRequest);
+            AuthUtils.passParametersToService(httpRequest);
         }
 
         logger.debug("Esco dal filtro");

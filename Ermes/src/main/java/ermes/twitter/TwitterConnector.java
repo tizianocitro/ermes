@@ -8,11 +8,12 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ermes.response.ErmesResponse;
 import ermes.response.data.PublishResponse;
 import ermes.response.data.twitter.TwitterAuthorizationResponse;
-import ermes.util.ErmesUtil;
+import ermes.util.MediaUtils;
 import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -71,7 +72,7 @@ public class TwitterConnector implements TwitterService {
     @Override
     public boolean isTokenGiven(String token, String tokenSecret) {
         // Check if the needed parameter to create the access token are not missing
-        return ErmesUtil.checkString(token) && ErmesUtil.checkString(tokenSecret);
+        return StringUtils.isNotEmpty(token) && StringUtils.isNotEmpty(tokenSecret);
     }
 
     @Override
@@ -109,7 +110,7 @@ public class TwitterConnector implements TwitterService {
         // Check the id
         long id = DEFAULT_USER_ID;
         try {
-            if (ErmesUtil.checkString(userId))
+            if (StringUtils.isNotEmpty(userId))
                 id = Long.parseLong(userId);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(USER_ID_NOT_VALID + " '" + userId + "'");
@@ -120,12 +121,11 @@ public class TwitterConnector implements TwitterService {
 
     @Override
     public boolean verifyConnectionParameters(String token, String verifier) {
-        return ErmesUtil.checkString(token) && ErmesUtil.checkString(verifier);
+        return StringUtils.isNotEmpty(token) && StringUtils.isNotEmpty(verifier);
     }
 
     @Override
     public ErmesResponse<TwitterAuthorizationResponse> authorization() {
-        // Create the response
         ErmesResponse<TwitterAuthorizationResponse> response = new ErmesResponse<>();
 
         // Build Twitter response
@@ -177,12 +177,11 @@ public class TwitterConnector implements TwitterService {
     // Publish a tweet
     @Override
     public ErmesResponse<PublishResponse> postTweet(String tweetText) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
         // Check parameters
         String errorMessage = PublishResponse.FAIL_MESSAGE;
-        if (!ErmesUtil.checkString(tweetText))
+        if (StringUtils.isEmpty(tweetText))
             return response.error(ErmesResponse.CODE, TwitterUtils.format(errorMessage));
 
         try {
@@ -215,10 +214,9 @@ public class TwitterConnector implements TwitterService {
     @Override
     public ErmesResponse<PublishResponse> postImage(String imageUrl, String tweetText) {
         // Check parameters
-        if (!ErmesUtil.checkString(imageUrl))
+        if (StringUtils.isEmpty(imageUrl))
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
 
         // The text is not needed if it is not specified
@@ -226,7 +224,7 @@ public class TwitterConnector implements TwitterService {
             tweetText = "";
 
         try {
-            ErmesUtil.saveMedia(imageUrl);
+            MediaUtils.saveMedia(imageUrl);
 
             URL url = new URL(imageUrl);
             String fileName = url.getFile();
@@ -241,12 +239,10 @@ public class TwitterConnector implements TwitterService {
     }
 
     private ErmesResponse<PublishResponse> postImageByUrl(String tweetText, String imageName) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
-        String imageFilePath = ErmesUtil.PATH + imageName;
+        String imageFilePath = MediaUtils.PATH + imageName;
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             StatusUpdate statusUpdate = new StatusUpdate(tweetText);
@@ -272,17 +268,16 @@ public class TwitterConnector implements TwitterService {
     @Override
     public ErmesResponse<PublishResponse> postVideo(String videoUrl, String tweetText) {
         // Check parameters
-        if (!ErmesUtil.checkString(videoUrl))
+        if (StringUtils.isEmpty(videoUrl))
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
 
         // The text is not needed if it is not specified
         if (tweetText == null)
             tweetText = "";
 
-        // Build error message
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
-            ErmesUtil.saveMedia(videoUrl);
+            MediaUtils.saveMedia(videoUrl);
 
             URL url = new URL(videoUrl);
             String fileName = url.getFile();
@@ -297,10 +292,9 @@ public class TwitterConnector implements TwitterService {
     }
 
     private ErmesResponse<PublishResponse> postVideoByUrl(String tweetText, String videoName) {
-        // Create the response
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
 
-        String videoFilePath = ErmesUtil.PATH + videoName;
+        String videoFilePath = MediaUtils.PATH + videoName;
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             StatusUpdate statusUpdate = new StatusUpdate(tweetText);

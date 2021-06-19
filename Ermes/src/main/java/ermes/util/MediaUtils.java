@@ -19,7 +19,7 @@ import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class ErmesUtil {
+public class MediaUtils {
 
     // Save media on specified path
     public static void saveMedia(String mediaUrl) throws IOException {
@@ -106,62 +106,6 @@ public class ErmesUtil {
         return videoPath.substring(videoPath.lastIndexOf("."));
     }
 
-    // Store parameters in session
-    public static void storeParameters(HttpSession session, HttpServletRequest httpRequest) {
-        Enumeration<String> parametersNames = httpRequest.getParameterNames();
-        while (parametersNames.hasMoreElements()) {
-            String parameterName = parametersNames.nextElement();
-
-            session.setAttribute(parameterName, httpRequest.getParameter(parameterName));
-        }
-    }
-
-    public static void manageRequest(HttpSession session, HttpServletRequest httpRequest) {
-        Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            String attributeName = attributeNames.nextElement();
-
-            httpRequest.setAttribute(attributeName, session.getAttribute(attributeName));
-        }
-    }
-
-    public static void manageRequest(HttpServletRequest httpRequest) {
-        Enumeration<String> parameterNames = httpRequest.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
-
-            httpRequest.setAttribute(paramName, httpRequest.getParameter(paramName));
-        }
-    }
-
-    // Equivalent to StringUtils.isNotEmpty() (it must be changed)
-    public static boolean checkString(String check) {
-        return check != null && !check.equals("");
-    }
-
-    public static boolean contains(String text, String containsText) {
-        Pattern pattern = Pattern.compile(containsText, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(text);
-
-        return matcher.find();
-    }
-
-    // Get the url from a string
-    public static String getSubstring(String text, String containsText) {
-        Pattern pattern = Pattern.compile(containsText, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(text);
-        if (matcher.find()) {
-            String substring = text.substring(matcher.start());
-
-            if (contains(substring, " "))
-                return substring.substring(0, substring.indexOf(" "));
-            else
-                return substring;
-        }
-
-        return "";
-    }
-
     /*
     * The path for saving media on Eclipse it's ./src/main/resources/static/media/
     * and in log4j2.properties change it to appender.file.fileName=./log/ermes.log
@@ -170,7 +114,4 @@ public class ErmesUtil {
 
     // Exception's message
     public static final String READER_ERROR = "Nessun ImageReader trovato, controlla la correttezza del file";
-
-    public static final String HTTP = "http://";
-    public static final String HTTPS = "https://";
 }

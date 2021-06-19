@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ermes.util.AuthUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.ObjectFactory;
@@ -19,8 +20,6 @@ import org.springframework.context.annotation.Configuration;
 import com.restfb.exception.FacebookOAuthException;
 import com.restfb.scope.ScopeBuilder;
 import ermes.facebook.FacebookService.FacebookServicePermission;
-import ermes.twitter.TwitterService;
-import ermes.util.ErmesUtil;
 
 @Configuration
 public class FacebookFilter implements Filter {
@@ -63,7 +62,7 @@ public class FacebookFilter implements Filter {
                     httpRequest.setAttribute(FacebookService.FACEBOOK_ERROR, PERMISSIONS_REVOKED);
 
                     // Pass the needed parameters to the service
-                    ErmesUtil.manageRequest(httpRequest);
+                    AuthUtils.passParametersToService(httpRequest);
 
                     // Invalidate the session before leaving
                     session.invalidate();
@@ -73,7 +72,7 @@ public class FacebookFilter implements Filter {
                     chain.doFilter(httpRequest, httpResponse);
                 } else { // End permissions' check
                     // Pass the needed parameters to the service
-                    ErmesUtil.manageRequest(httpRequest);
+                    AuthUtils.passParametersToService(httpRequest);
 
                     // Invalidate the session before leaving
                     session.invalidate();
@@ -94,7 +93,7 @@ public class FacebookFilter implements Filter {
                         httpRequest.setAttribute(FacebookService.FACEBOOK_ERROR, accessDenied);
 
                         // Pass the needed parameters to the service
-                        ErmesUtil.manageRequest(httpRequest);
+                        AuthUtils.passParametersToService(httpRequest);
 
                         // Invalidate the session before leaving
                         session.invalidate();
@@ -104,7 +103,7 @@ public class FacebookFilter implements Filter {
                         chain.doFilter(httpRequest, httpResponse);
                     } else {
                         // Store request parameters for multiple redirections
-                        ErmesUtil.storeParameters(session, httpRequest);
+                        AuthUtils.storeParameters(session, httpRequest);
 
                         logger.debug("Reindirizzamento a Facebook");
 
@@ -139,7 +138,7 @@ public class FacebookFilter implements Filter {
                                 facebook.requestPermissions(sessionKey, sessionSecret, callbackUrl, permissions));
                     } else { // Second else
                         // Pass the parameters needed to the service
-                        ErmesUtil.manageRequest(session, httpRequest);
+                        AuthUtils.retrieveStoredParameters(session, httpRequest);
 
                         // Invalidate the session before leaving
                         session.invalidate();

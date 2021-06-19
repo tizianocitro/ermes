@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ermes.util.AuthUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import ermes.util.ErmesUtil;
 import twitter4j.TwitterException;
 
 @Configuration
@@ -60,7 +60,7 @@ public class TwitterFilter implements Filter {
                                 httpRequest.getParameter(TwitterService.TWITTER_USER_ID)));
 
                 // Pass needed parameters to the service
-                ErmesUtil.manageRequest(httpRequest);
+                AuthUtils.passParametersToService(httpRequest);
 
                 // Invalidate the session before leaving
                 session.invalidate();
@@ -75,7 +75,7 @@ public class TwitterFilter implements Filter {
                         httpRequest.getParameter(TwitterService.TWITTER_VERIFIER))) {
 
                     // Store request parameters for multiple redirections
-                    ErmesUtil.storeParameters(session, httpRequest);
+                    AuthUtils.storeParameters(session, httpRequest);
 
                     logger.debug("Reindirizzamento a Twitter");
 
@@ -91,7 +91,7 @@ public class TwitterFilter implements Filter {
                     twitter.configAccessToken(verifier);
 
                     // Pass needed parameters to the service
-                    ErmesUtil.manageRequest(session, httpRequest);
+                    AuthUtils.retrieveStoredParameters(session, httpRequest);
 
                     // Invalidate the session before leaving
                     session.invalidate();
