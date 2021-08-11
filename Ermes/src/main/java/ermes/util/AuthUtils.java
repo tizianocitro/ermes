@@ -8,10 +8,8 @@ import java.util.Enumeration;
 
 public class AuthUtils {
 
-    /*
-    * Returns the error message if an error occurred while authenticating,
-    * otherwise it returns null to signal that there wasn't any error.
-    */
+    // Returns the error message if an error occurred while authenticating,
+    // otherwise it returns null to signal that there wasn't any error.
     public static String isAuthOrErrorMessage(HttpServletRequest request) {
         String authErrorMessage = (String) request.getAttribute(AUTH_ERROR);
         if (StringUtils.isNotEmpty(authErrorMessage))

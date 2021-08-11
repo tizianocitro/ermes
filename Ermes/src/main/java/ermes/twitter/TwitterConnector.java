@@ -56,8 +56,9 @@ public class TwitterConnector implements TwitterService {
 
     @Override
     public boolean isTokenExpired() {
-        if (accessToken == null)
-        	return true;
+        if (accessToken == null) {
+            return true;
+        }
 
         try {
             // Check if the access token is still valid
@@ -110,8 +111,9 @@ public class TwitterConnector implements TwitterService {
         // Check the id
         long id = DEFAULT_USER_ID;
         try {
-            if (StringUtils.isNotEmpty(userId))
+            if (StringUtils.isNotEmpty(userId)) {
                 id = Long.parseLong(userId);
+            }
         } catch (NumberFormatException e) {
             throw new NumberFormatException(USER_ID_NOT_VALID + " '" + userId + "'");
         }
@@ -144,8 +146,7 @@ public class TwitterConnector implements TwitterService {
         twitterAccessTokenResponse.setApplicationSecret(consumerSecret);
 
         // Build response
-        return response
-				.success(ErmesResponse.CODE, ErmesResponse.SUCCESS_MESSAGE)
+        return response.success(ErmesResponse.CODE, ErmesResponse.SUCCESS_MESSAGE)
                 .setData(twitterAccessTokenResponse);
     }
 
@@ -154,8 +155,9 @@ public class TwitterConnector implements TwitterService {
     public String getServiceName(StringBuffer path, String key) {
         Pattern pattern = Pattern.compile(key, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(path);
-        if (matcher.find())
+        if (matcher.find()) {
             return path.substring(matcher.start());
+        }
 
         return null;
     }
@@ -164,9 +166,8 @@ public class TwitterConnector implements TwitterService {
     @Override
     public User getUser() {
         User user = null;
-
         try {
-			user = twitter.showUser(twitter.getScreenName());
+            user = twitter.showUser(twitter.getScreenName());
         } catch (IllegalStateException | TwitterException e) {
             e.printStackTrace();
         }
@@ -181,8 +182,9 @@ public class TwitterConnector implements TwitterService {
 
         // Check parameters
         String errorMessage = PublishResponse.FAIL_MESSAGE;
-        if (StringUtils.isEmpty(tweetText))
+        if (StringUtils.isEmpty(tweetText)) {
             return response.error(ErmesResponse.CODE, TwitterUtils.format(errorMessage));
+        }
 
         try {
             // Publish the tweet
@@ -190,8 +192,7 @@ public class TwitterConnector implements TwitterService {
             Status status = twitter.updateStatus(statusUpdate);
 
             // Build the successful response
-            return response
-					.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+            return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                     .setData(new PublishResponse(getTweetUrl(status)));
         } catch (TwitterException e) {
             errorMessage = e.getMessage();
@@ -214,18 +215,19 @@ public class TwitterConnector implements TwitterService {
     @Override
     public ErmesResponse<PublishResponse> postImage(String imageUrl, String tweetText) {
         // Check parameters
-        if (StringUtils.isEmpty(imageUrl))
+        if (StringUtils.isEmpty(imageUrl)) {
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
 
         // The text is not needed if it is not specified
-        if (tweetText == null)
+        if (tweetText == null) {
             tweetText = "";
+        }
 
         try {
             MediaUtils.saveMedia(imageUrl);
-
             URL url = new URL(imageUrl);
             String fileName = url.getFile();
             String imageName = fileName.substring(fileName.lastIndexOf("/"));
@@ -240,9 +242,7 @@ public class TwitterConnector implements TwitterService {
 
     private ErmesResponse<PublishResponse> postImageByUrl(String tweetText, String imageName) {
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
-
         String imageFilePath = MediaUtils.PATH + imageName;
-
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             StatusUpdate statusUpdate = new StatusUpdate(tweetText);
@@ -253,8 +253,7 @@ public class TwitterConnector implements TwitterService {
             Status status = twitter.updateStatus(statusUpdate);
 
             // Build the successful response
-            return response
-					.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+            return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                     .setData(new PublishResponse(getMediaTweetUrl(status)));
         } catch (TwitterException e) {
             errorMessage = e.getMessage();
@@ -268,17 +267,18 @@ public class TwitterConnector implements TwitterService {
     @Override
     public ErmesResponse<PublishResponse> postVideo(String videoUrl, String tweetText) {
         // Check parameters
-        if (StringUtils.isEmpty(videoUrl))
+        if (StringUtils.isEmpty(videoUrl)) {
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         // The text is not needed if it is not specified
-        if (tweetText == null)
+        if (tweetText == null) {
             tweetText = "";
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             MediaUtils.saveMedia(videoUrl);
-
             URL url = new URL(videoUrl);
             String fileName = url.getFile();
             String videoName = fileName.substring(fileName.lastIndexOf("/"));
@@ -293,7 +293,6 @@ public class TwitterConnector implements TwitterService {
 
     private ErmesResponse<PublishResponse> postVideoByUrl(String tweetText, String videoName) {
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
-
         String videoFilePath = MediaUtils.PATH + videoName;
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
@@ -308,8 +307,7 @@ public class TwitterConnector implements TwitterService {
             Status status = twitter.updateStatus(statusUpdate);
 
             // Build the successful response
-            return response
-					.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+            return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                     .setData(new PublishResponse(getMediaTweetUrl(status)));
         } catch (TwitterException | FileNotFoundException e) {
             errorMessage = e.getMessage();

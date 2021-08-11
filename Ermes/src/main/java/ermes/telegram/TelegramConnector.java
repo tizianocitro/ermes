@@ -44,9 +44,9 @@ public class TelegramConnector implements TelegramService {
     @Override
     public ErmesResponse<TelegramPublishResponse> sendMessage(String chatId, String messageText) {
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
-
-        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(messageText))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(messageText)) {
             return response.error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         // Needed to get the proper link to the message
         boolean notPublic = isChatIdFromUrl(chatId);
@@ -65,19 +65,20 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendMessage);
 
         // Check errors
-        if (StringUtils.isNotEmpty(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description())) {
             return getErrorResponse(sendResponse);
+        }
 
         // Build successful response
-        return response
-                .success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+        return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                 .setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
     }
 
     @Override
     public ErmesResponse<TelegramPublishResponse> sendPhoto(String chatId, String imageUrl, String messageText) {
-        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(imageUrl))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(imageUrl)) {
             return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
@@ -118,8 +119,9 @@ public class TelegramConnector implements TelegramService {
         byte[] imageAsBytes = MediaUtils.fetchBytesFromImage(imageFilePath, imageFormat);
 
         // If a message was not specified, it's not necessary to send it
-        if (messageText == null)
+        if (messageText == null) {
             messageText = "";
+        }
 
         // Build message
         SendPhoto sendPhoto = new SendPhoto(chatId, imageAsBytes)
@@ -132,19 +134,20 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendPhoto);
 
         // Check errors
-        if (StringUtils.isNotEmpty(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description())) {
             return getErrorResponse(sendResponse);
+        }
 
         // Build successful response
-        return response
-				.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+        return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                 .setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
     }
 
     @Override
     public ErmesResponse<TelegramPublishResponse> sendVideo(String chatId, String videoUrl, String messageText) {
-        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(videoUrl))
+        if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(videoUrl)) {
             return new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
@@ -177,8 +180,9 @@ public class TelegramConnector implements TelegramService {
         byte[] videoAsBytes = MediaUtils.fetchBytesFromVideo(videoFilePath);
 
         // If a message was not specified, it's not necessary to send it
-        if (messageText == null)
+        if (messageText == null) {
             messageText = "";
+        }
 
         // Build message
         SendVideo sendVideo = new SendVideo(chatId, videoAsBytes)
@@ -191,12 +195,12 @@ public class TelegramConnector implements TelegramService {
         SendResponse sendResponse = telegramBot.execute(sendVideo);
 
         // Check errors
-        if (StringUtils.isNotEmpty(sendResponse.description()))
+        if (StringUtils.isNotEmpty(sendResponse.description())) {
             return getErrorResponse(sendResponse);
+        }
 
         // Build successful response
-        return response
-				.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+        return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                 .setData(new TelegramPublishResponse(getMessageUrl(sendResponse, notPublic), chatId));
     }
 
@@ -204,10 +208,11 @@ public class TelegramConnector implements TelegramService {
     public String manageChatId(String chatId) {
         if (isChatIdFromUrl(chatId)) {
             // If the id is passed by a message's url
-            if (idFromMessageUrl(chatId))
+            if (idFromMessageUrl(chatId)) {
                 return obtainChatIdFromMessageUrl(chatId);
-            else
+            } else {
                 return obtainChatId(chatId);
+            }
         }
 
         return chatId;
@@ -312,10 +317,11 @@ public class TelegramConnector implements TelegramService {
         ErmesResponse<TelegramPublishResponse> response = new ErmesResponse<>();
 
         // Check the specific error in order to customize it
-        if (sendResponse.description().equalsIgnoreCase(TELEGRAM_BOT_NOT_FOUND))
+        if (sendResponse.description().equalsIgnoreCase(TELEGRAM_BOT_NOT_FOUND)) {
             return response.error(ErmesResponse.CODE, "Bot " + TELEGRAM_BOT_NOT_FOUND);
-        else
+        } else {
             return response.error(ErmesResponse.CODE, sendResponse.description());
+        }
     }
 
     @Override

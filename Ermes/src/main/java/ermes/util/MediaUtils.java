@@ -24,15 +24,14 @@ public class MediaUtils {
 
         // Where to save the media
         String destination = PATH + format;
-
         InputStream inputStream = url.openStream();
         OutputStream outputStream = new FileOutputStream(destination);
-
         byte[] b = new byte[2048];
         int length;
 
-        while ((length = inputStream.read(b)) != -1)
+        while ((length = inputStream.read(b)) != -1) {
             outputStream.write(b, 0, length);
+        }
 
         inputStream.close();
         outputStream.close();
@@ -56,13 +55,12 @@ public class MediaUtils {
     public static String getImageFormat(String imageFile) throws RuntimeException {
         File file = new File(imageFile);
         ImageInputStream imageInputStream;
-
         try {
             imageInputStream = ImageIO.createImageInputStream(file);
-
             Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
-            if (!iterator.hasNext())
+            if (!iterator.hasNext()) {
                 throw new RuntimeException(READER_ERROR + " " + imageFile);
+            }
 
             ImageReader reader = iterator.next();
 
@@ -76,15 +74,14 @@ public class MediaUtils {
 
     public static byte[] fetchBytesFromVideo(String videoFile) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
         byte[] buffer = new byte[1024];
         int n;
-
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(videoFile));
 
-            while (-1 != (n = fileInputStream.read(buffer)))
+            while (-1 != (n = fileInputStream.read(buffer))) {
                 baos.write(buffer, 0, n);
+            }
 
             fileInputStream.close();
 
@@ -101,10 +98,8 @@ public class MediaUtils {
         return videoPath.substring(videoPath.lastIndexOf("."));
     }
 
-    /*
-    * The path for saving media on Eclipse it's ./src/main/resources/static/media/
-    * and in log4j2.properties change it to appender.file.fileName=./log/ermes.log
-    */
+    // The path for saving media on Eclipse it's ./src/main/resources/static/media/
+    // and in log4j2.properties change it to appender.file.fileName=./log/ermes.log.
     public static final String PATH = "Ermes/src/main/resources/static/media/";
 
     public static final String READER_ERROR = "Nessun ImageReader trovato, controllare la correttezza del file";

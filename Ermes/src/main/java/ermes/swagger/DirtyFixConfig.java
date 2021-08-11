@@ -69,7 +69,6 @@ public class DirtyFixConfig {
 
         private void addOperationParametersForPathParams(final OperationContext context) {
             final UriTemplate uriTemplate = new UriTemplate(context.requestMappingPattern());
-
             final List<Parameter> pathParams = uriTemplate.getVariableNames().stream()
                     .map(this::createPathParameter)
                     .collect(Collectors.toList());

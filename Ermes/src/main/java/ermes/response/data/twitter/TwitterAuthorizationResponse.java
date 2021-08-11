@@ -6,8 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Modella la risposta per il servizio di autorizzazione.")
 public class TwitterAuthorizationResponse {
 
-    public TwitterAuthorizationResponse() {
-    }
+    public TwitterAuthorizationResponse() {}
 
     public TwitterAuthorizationResponse(String accessToken, String accessTokenSecret, String userId,
 			String applicationKey, String applicationSecret) {

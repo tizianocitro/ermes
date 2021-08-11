@@ -7,14 +7,12 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Modella la risposta per i servizi di pubblicazione per Telegram.")
 public class TelegramPublishResponse extends PublishResponse {
 
-    public TelegramPublishResponse() {
-    }
+    public TelegramPublishResponse() {}
 
     public TelegramPublishResponse(String link, String chatId) {
         super(link);
         this.chatId = chatId;
     }
-
 
     @Override
     public String toString() {

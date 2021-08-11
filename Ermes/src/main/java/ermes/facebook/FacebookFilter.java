@@ -38,7 +38,6 @@ public class FacebookFilter implements Filter {
 
         // Build the callback url
         String callbackUrl = domain + facebook.getServiceName(httpRequest.getRequestURL(), FacebookService.FACEBOOK_ID);
-
         try {
             // Check if the access token is given
             if (facebook.isTokenGiven(httpRequest.getParameter(FacebookService.FACEBOOK_ACCESS_TOKEN))) {

@@ -18,11 +18,11 @@ public class UrlUtils {
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
             String substring = text.substring(matcher.start());
-
-            if (contains(substring, " "))
+            if (contains(substring, " ")) {
                 return substring.substring(0, substring.indexOf(" "));
-            else
-                return substring;
+            }
+
+            return substring;
         }
 
         return "";

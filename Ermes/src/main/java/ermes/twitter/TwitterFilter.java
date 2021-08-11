@@ -36,7 +36,6 @@ public class TwitterFilter implements Filter {
 
         // Build the callback url
         String callbackUrl = domain + twitter.getServiceName(httpRequest.getRequestURL(), TwitterService.TWITTER_ID);
-
         try {
             // If the access token is given there's no need to ask Twitter for it, so just build the connection
             if (twitter.isTokenGiven(httpRequest.getParameter(TwitterService.TWITTER_ACCESS_TOKEN),

@@ -43,10 +43,10 @@ public class FacebookController {
         logger.debug("Servizio facebook/authorization");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<FacebookAuthorizationResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         return ResponseEntity.ok(facebook.authorization());
     }
@@ -75,10 +75,10 @@ public class FacebookController {
         logger.debug("Servizio facebook/postImage");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String page = (String) request.getAttribute("page_name");
@@ -110,10 +110,10 @@ public class FacebookController {
         logger.debug("Servizio facebook/postStatus");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String page = (String) request.getAttribute("page_name");
@@ -146,10 +146,10 @@ public class FacebookController {
         logger.debug("Servizio facebook/postVideo");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String page = (String) request.getAttribute("page_name");

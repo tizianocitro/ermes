@@ -41,10 +41,10 @@ public class TwitterController {
         logger.debug("Servizio twitter/authorization");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<TwitterAuthorizationResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
 		return ResponseEntity.ok(twitter.authorization());
     }
@@ -73,10 +73,10 @@ public class TwitterController {
         logger.debug("Servizio twitter/postImage");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-		if (StringUtils.isNotEmpty(authErrorMessage))
-			return ResponseEntity
-					.status(HttpStatus.BAD_REQUEST)
-					.body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+		if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
 		// Get parameters from request
         String image = (String) request.getAttribute("image_url");
@@ -107,10 +107,10 @@ public class TwitterController {
         logger.debug("Servizio twitter/postTweet");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
 		// Get parameters from request
         String tweet = (String) request.getAttribute("text");
@@ -142,10 +142,10 @@ public class TwitterController {
         logger.debug("Servizio twitter/postVideo");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
 		// Get parameters from request
         String video = (String) request.getAttribute("video_url");

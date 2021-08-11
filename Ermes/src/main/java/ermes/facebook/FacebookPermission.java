@@ -41,37 +41,49 @@ public class FacebookPermission implements FacebookServicePermission {
 
     @Override
     public boolean grantedPermissions(FacebookServicePermission permissions) {
-        if (permissions == null)
+        if (permissions == null) {
             return false;
+        }
 
-        for (ServicePermission perm: permissions.getPermissions())
-            if (!isGranted(perm) || !contains(perm))
-            	return false;
+        for (ServicePermission perm : permissions.getPermissions()) {
+            if (!isGranted(perm) || !contains(perm)) {
+                return false;
+            }
+        }
 
         return true;
     }
 
     @Override
     public boolean isGranted(ServicePermission permission) {
-        if (permission == null)
+        if (permission == null) {
             return false;
+        }
 
-        for (ServicePermission perm: permissions)
-            if (perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString()))
-                if (perm.getStatus().equalsIgnoreCase(ServicePermission.DECLINED))
-                	return false;
+        for (ServicePermission perm : permissions) {
+            boolean isSamePermission = perm.getPermission().getPermissionString()
+                    .equalsIgnoreCase(permission.getPermission().getPermissionString());
+            if (isSamePermission && perm.getStatus().equalsIgnoreCase(ServicePermission.DECLINED)) {
+                return false;
+            }
+        }
 
         return true;
     }
 
     @Override
     public boolean contains(ServicePermission permission) {
-        if (permission == null)
+        if (permission == null) {
             return false;
+        }
 
-        for (ServicePermission perm: permissions)
-            if (perm.getPermission().getPermissionString().equalsIgnoreCase(permission.getPermission().getPermissionString()))
+        for (ServicePermission perm : permissions) {
+            boolean isSamePermission = perm.getPermission().getPermissionString()
+                    .equalsIgnoreCase(permission.getPermission().getPermissionString());
+            if (isSamePermission) {
                 return true;
+            }
+        }
 
         return false;
     }
@@ -79,8 +91,7 @@ public class FacebookPermission implements FacebookServicePermission {
     @Override
     public String toString() {
         StringBuilder toStringBuilder = new StringBuilder();
-
-        for (ServicePermission permission: permissions) {
+        for (ServicePermission permission : permissions) {
             toStringBuilder.append("\t[Permission: ")
                     .append(permission.getPermission().getPermissionString())
                     .append(", Status: ")

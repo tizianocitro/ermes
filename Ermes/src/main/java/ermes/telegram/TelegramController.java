@@ -44,10 +44,10 @@ public class TelegramController {
         logger.debug("Servizio telegram/sendPhoto");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String id = (String) request.getAttribute("chat_id");
@@ -73,10 +73,10 @@ public class TelegramController {
         logger.debug("Servizio telegram/sendMessage");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String id = (String) request.getAttribute("chat_id");
@@ -103,10 +103,10 @@ public class TelegramController {
         logger.debug("Servizio telegram/sendVideo");
 
         String authErrorMessage = AuthUtils.isAuthOrErrorMessage(request);
-        if (StringUtils.isNotEmpty(authErrorMessage))
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+        if (StringUtils.isNotEmpty(authErrorMessage)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErmesResponse<TelegramPublishResponse>().error(ErmesResponse.CODE, authErrorMessage));
+        }
 
         // Get parameters from request
         String id = (String) request.getAttribute("chat_id");

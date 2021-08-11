@@ -47,11 +47,10 @@ public class FacebookConnector implements FacebookService {
     @Override
     public void createConnection(String key, String secret, String callbackUrl, String code) {
         this.accessToken = new DefaultFacebookClient(Version.LATEST)
-				.obtainUserAccessToken(key, secret, callbackUrl, code);
+                .obtainUserAccessToken(key, secret, callbackUrl, code);
 
-        //Get extended token
+        // Get extended token
         this.accessToken = extendAccessToken(key, secret, this.accessToken);
-
         facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), Version.LATEST);
     }
 
@@ -80,8 +79,9 @@ public class FacebookConnector implements FacebookService {
 
     @Override
     public boolean isTokenExpiredOrNotValid() {
-        if (accessToken == null)
+        if (accessToken == null) {
             return true;
+        }
 
         DebugTokenInfo tokenInfo = facebookClient.debugToken(accessToken.getAccessToken());
 
@@ -127,8 +127,7 @@ public class FacebookConnector implements FacebookService {
         facebookAccessTokenResponse.setUserId(tokenInfo.getUserId());
 
         // Build the response
-        return response
-				.success(ErmesResponse.CODE, ErmesResponse.SUCCESS_MESSAGE)
+        return response.success(ErmesResponse.CODE, ErmesResponse.SUCCESS_MESSAGE)
                 .setData(facebookAccessTokenResponse);
     }
 
@@ -137,8 +136,9 @@ public class FacebookConnector implements FacebookService {
     public String getServiceName(StringBuffer path, String key) {
         Pattern pattern = Pattern.compile(key, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(path);
-        if (matcher.find())
+        if (matcher.find()) {
             return path.substring(matcher.start());
+        }
 
         return null;
     }
@@ -156,8 +156,9 @@ public class FacebookConnector implements FacebookService {
 
         // Check input parameters
         String errorMessage = PublishResponse.FAIL_MESSAGE;
-        if (StringUtils.isEmpty(pageName) || StringUtils.isEmpty(statusText))
+        if (StringUtils.isEmpty(pageName) || StringUtils.isEmpty(statusText)) {
             return response.error(ErmesResponse.CODE, errorMessage);
+        }
 
         // Get the type of the status because Facebook didn't handle link by itself
         String statusType = getStatusType(statusText);
@@ -180,8 +181,9 @@ public class FacebookConnector implements FacebookService {
                     statusText = getUrlToPublish(statusText);
 
                     // Clear the message if the link does not come with a message
-                    if (message.equals(statusText))
+                    if (message.equals(statusText)) {
                         message = "";
+                    }
                 }
 
                 FacebookClient pageClient = new DefaultFacebookClient(pageAccessToken, Version.LATEST);
@@ -195,8 +197,7 @@ public class FacebookConnector implements FacebookService {
                         Parameter.with("message", message));
 
                 // Build the successful response
-                return response
-						.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+                return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                         .setData(new PublishResponse(getPostUrl(facebookResponse)));
             }
         } catch (FacebookOAuthException e) {
@@ -212,8 +213,9 @@ public class FacebookConnector implements FacebookService {
 
     // Return the type of the status which is going to be published
     private String getStatusType(String statusText) {
-        if (UrlUtils.contains(statusText, UrlUtils.HTTPS) || UrlUtils.contains(statusText, UrlUtils.HTTP))
+        if (UrlUtils.contains(statusText, UrlUtils.HTTPS) || UrlUtils.contains(statusText, UrlUtils.HTTP)) {
             return FacebookService.FACEBOOK_STATUS_LINK;
+        }
 
         return FacebookService.FACEBOOK_STATUS_MESSAGE;
     }
@@ -222,13 +224,15 @@ public class FacebookConnector implements FacebookService {
     private String getUrlToPublish(String statusText) {
         // Get the https url
         String url = UrlUtils.getUrlAsContainedSubstring(statusText, UrlUtils.HTTPS);
-        if (StringUtils.isNotEmpty(url))
+        if (StringUtils.isNotEmpty(url)) {
             return url;
+        }
 
         // Get the http url if it is not https
         url = UrlUtils.getUrlAsContainedSubstring(statusText, UrlUtils.HTTP);
-        if (StringUtils.isNotEmpty(url))
+        if (StringUtils.isNotEmpty(url)) {
             return url;
+        }
 
         return "";
     }
@@ -237,12 +241,14 @@ public class FacebookConnector implements FacebookService {
     @Override
     public ErmesResponse<PublishResponse> postImageOnPage(String pageName, String imageUrl, String statusText) {
         // Check input parameters
-        if (StringUtils.isEmpty(imageUrl) || StringUtils.isEmpty(pageName))
+        if (StringUtils.isEmpty(imageUrl) || StringUtils.isEmpty(pageName)) {
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         // The message is not needed if it is not specified
-        if (statusText == null)
+        if (statusText == null) {
             statusText = "";
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
@@ -266,7 +272,6 @@ public class FacebookConnector implements FacebookService {
     // Publish an image on a user's page
     private ErmesResponse<PublishResponse> postImage(String pageName, String imageFilePath, String imageName, String statusText) {
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
-
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             // Get user's pages
@@ -294,8 +299,7 @@ public class FacebookConnector implements FacebookService {
                         Parameter.with("message", statusText));
 
                 // Build the successful response
-                return response
-						.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+                return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                         .setData(new PublishResponse(getPostUrl(facebookResponse)));
             }
         } catch (RuntimeException e) {
@@ -310,12 +314,14 @@ public class FacebookConnector implements FacebookService {
     @Override
     public ErmesResponse<PublishResponse> postVideoOnPage(String pageName, String videoUrl, String statusText) {
         // Check input parameters
-        if (StringUtils.isEmpty(videoUrl) || StringUtils.isEmpty(pageName))
+        if (StringUtils.isEmpty(videoUrl) || StringUtils.isEmpty(pageName)) {
             return new ErmesResponse<PublishResponse>().error(ErmesResponse.CODE, PublishResponse.FAIL_MESSAGE);
+        }
 
         // The message is not needed if it is not specified
-        if (statusText == null)
+        if (statusText == null) {
             statusText = "";
+        }
 
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
@@ -339,7 +345,6 @@ public class FacebookConnector implements FacebookService {
     // Publish an image on a user's page
     private ErmesResponse<PublishResponse> postVideo(String pageName, String videoFilePath, String videoName, String statusText) {
         ErmesResponse<PublishResponse> response = new ErmesResponse<>();
-
         String errorMessage = PublishResponse.FAIL_MESSAGE;
         try {
             // Get user's pages
@@ -364,8 +369,7 @@ public class FacebookConnector implements FacebookService {
                         Parameter.with("description", statusText));
 
                 // Build the successful response
-                return response
-						.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
+                return response.success(ErmesResponse.CODE, PublishResponse.SUCCESS_MESSAGE)
                         .setData(new PublishResponse(getPostUrl(facebookResponse)));
             }
         } catch (FacebookOAuthException e) {
@@ -389,10 +393,13 @@ public class FacebookConnector implements FacebookService {
 
     // Return a page found by its name
     private Page findPageByName(Connection<Page> pages, String pageName) {
-        for (List<Page> feedPages: pages)
-            for (Page page: feedPages)
-                if (page.getName().equals(pageName))
+        for (List<Page> feedPages : pages) {
+            for (Page page : feedPages) {
+                if (page.getName().equals(pageName)) {
                     return page;
+                }
+            }
+        }
 
         return null;
     }
@@ -407,10 +414,10 @@ public class FacebookConnector implements FacebookService {
     @Override
     public FacebookServicePermission managePermissions(String permissions) {
         FacebookServicePermission servicePermission = createPermissions();
-
         List<String> permissionsList = readPermissions(permissions);
-        for (String permission: permissionsList)
+        for (String permission : permissionsList) {
             servicePermission.addPermission(permission);
+        }
 
         return servicePermission;
     }
@@ -428,8 +435,9 @@ public class FacebookConnector implements FacebookService {
             index = matcher.start() + 1;
         }
 
-        if (index < permissions.length())
+        if (index < permissions.length()) {
             permissionsList.add(permissions.substring(index).toUpperCase());
+        }
 
         return permissionsList;
     }
@@ -437,17 +445,19 @@ public class FacebookConnector implements FacebookService {
     @Override
     public String requestPermissions(String key, String secret, String callbackUrl, FacebookServicePermission permissions) {
         ScopeBuilder scopeBuilder = new ScopeBuilder();
-
         FacebookServicePermission userPermissions = getPermissions();
 
         // If null I need all the needed permissions
         if (userPermissions == null) {
-            for (ServicePermission permission: permissions.getPermissions())
+            for (ServicePermission permission : permissions.getPermissions()) {
                 scopeBuilder.addPermission(permission.getPermission());
+            }
         } else {
-            for (ServicePermission permission: permissions.getPermissions())
-                if (!userPermissions.isGranted(permission) || !userPermissions.contains(permission))
+            for (ServicePermission permission : permissions.getPermissions()) {
+                if (!userPermissions.isGranted(permission) || !userPermissions.contains(permission)) {
                     scopeBuilder.addPermission(permission.getPermission());
+                }
+            }
         }
 
         // Request the permissions
@@ -456,9 +466,7 @@ public class FacebookConnector implements FacebookService {
 
     @Override
     public boolean verifyPermissions(FacebookServicePermission permissions) {
-        FacebookServicePermission userPermissions = getPermissions();
-
-        return userPermissions.grantedPermissions(permissions);
+        return getPermissions().grantedPermissions(permissions);
     }
 
     // Get the permissions from Facebook
@@ -467,16 +475,16 @@ public class FacebookConnector implements FacebookService {
 
         // Get permissions from Facebook
         JsonObject json = facebookClient.fetchObject("me/permissions", JsonObject.class);
-        if (json == null)
+        if (json == null) {
             return null;
+        }
 
         // Build the permissions
         JsonValue val = json.get("data");
         JsonArray array = val.asArray();
-        for (JsonValue object: array) {
+        for (JsonValue object : array) {
             String permission = object.asObject().get("permission").asString().toUpperCase();
             String status = object.asObject().get("status").asString();
-
             permissions.addPermission(permission, status);
         }
 
