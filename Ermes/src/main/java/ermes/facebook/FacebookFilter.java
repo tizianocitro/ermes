@@ -23,7 +23,6 @@ import ermes.facebook.FacebookService.FacebookServicePermission;
 
 @Configuration
 public class FacebookFilter implements Filter {
-
     private static final Logger logger = LogManager.getLogger(FacebookFilter.class);
 
     @Override
